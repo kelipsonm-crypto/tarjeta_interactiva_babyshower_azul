@@ -1,0 +1,10 @@
+# Archivos y carpetas de desarrollo local y pruebas
+scratch/
+test-results/
+trabajando.html
+invitacion.php
+*.tmp
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db

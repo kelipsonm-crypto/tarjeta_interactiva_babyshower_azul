@@ -1,0 +1,803 @@
+/* ==========================================================================
+   Invitación Interactiva - Portada Sobre Cerrado
+   Diseño Mobile-First de Alta Fidelidad Estética y Artesanal
+   ========================================================================== */
+
+/* --- Reset y Variables de Diseño --- */
+:root {
+  --color-bg-ambient: #EDEAE5;
+  --color-card-bg-top: #FFFFFF;
+  --color-card-bg-mid: #FBF9F5;
+  --color-card-bg-bot: #F4EFE6;
+
+  --color-text-primary: #554D45;
+  --color-text-secondary: #7A7268;
+  --color-gold: #C5A059;
+  --color-gold-glow: rgba(197, 160, 89, 0.45);
+  --color-blue-ink: #3A5F85;
+
+  --font-serif: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --shadow-envelope: 0 10px 18px rgba(15, 25, 45, 0.50), 0 4px 8px rgba(15, 25, 45, 0.30);
+  --shadow-seal: 0 6px 16px rgba(120, 85, 20, 0.35);
+  --shadow-device: 0 28px 70px -15px rgba(50, 45, 40, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.07);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-serif);
+  background-color: var(--color-bg-ambient);
+  color: var(--color-text-primary);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Contenedor Global y Marco para Escritorio --- */
+.page-wrapper {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: radial-gradient(circle at 50% 30%, #F5F3EF 0%, #E6E1D8 100%);
+}
+
+/* Marco simulador de smartphone en desktop / Fullscreen en móviles */
+.mobile-device {
+  width: 100%;
+  max-width: 425px;
+  height: 100%;
+  max-height: min(875px, calc(100dvh - 32px));
+  aspect-ratio: 9 / 18.5;
+  background: linear-gradient(180deg, var(--color-card-bg-top) 0%, var(--color-card-bg-mid) 40%, var(--color-card-bg-bot) 100%);
+  border-radius: 40px;
+  box-shadow: var(--shadow-device);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  container-type: size;
+  container-name: card;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Pantalla de portada */
+.card-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(16px, 2.8cqh, 24px) clamp(12px, 4cqw, 20px) clamp(12px, 2.2cqh, 20px) clamp(12px, 4cqw, 20px);
+}
+
+/* ==========================================================================
+   Capa Decorativa Superior (Globos y Palmeras)
+   ========================================================================== */
+.decor-layer {
+  position: absolute;
+  top: clamp(24px, 4.2cqh, 35px);
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Globos en la esquina superior izquierda */
+.decor-balloons {
+  position: absolute;
+  top: calc(clamp(6px, 1.2cqh, 10px) + 30px);
+  left: clamp(2px, 1cqw, 4px);
+  width: clamp(105px, 15.5cqh, 130px);
+  z-index: 10;
+  filter: drop-shadow(0 10px 22px rgba(50, 70, 100, 0.12));
+}
+
+.floating-balloons {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform-origin: 50% 72%;
+  animation: gentleBalloonsFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes gentleBalloonsFloat {
+  0% {
+    transform: rotate(0deg) translateY(0px);
+  }
+
+  50% {
+    transform: rotate(1.6deg) translateY(-6px);
+  }
+
+  100% {
+    transform: rotate(-1.2deg) translateY(-2px);
+  }
+}
+
+/* Palmeras en la esquina superior derecha (video animado escalado a la par de los globos) */
+.decor-palms {
+  position: absolute;
+  top: calc(clamp(-8px, -1cqh, -2px) + 50px);
+  right: calc(clamp(-10px, -2cqw, -4px) - 60px);
+  width: clamp(220px, calc(25.5cqh + 50px), 265px);
+  height: clamp(250px, calc(25.5cqh + 80px), 295px);
+  z-index: 2;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.palm-trees-video {
+  display: none;
+}
+
+.palm-trees-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  pointer-events: none;
+  opacity: 0.95;
+  image-rendering: auto;
+}
+
+/* ==========================================================================
+   Encabezado Poético Central
+   ========================================================================== */
+.card-header {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: clamp(6px, 1.3cqh, 10px);
+  padding: 0 10px;
+  transform: translateY(clamp(4px, 1.2cqh, 10px));
+}
+
+/* Corona dorada */
+.crown-container {
+  width: clamp(56px, 9cqh, 76px);
+  height: auto;
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: center;
+  transform: translateY(clamp(7px, 1.3cqh, 11px));
+}
+
+.gold-crown {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(180, 140, 60, 0.2));
+}
+
+/* Texto poético */
+.poetic-text {
+  margin-top: 4px;
+  line-height: 1.34;
+}
+
+.poetic-text .verse {
+  font-family: var(--font-serif);
+  font-size: clamp(0.98rem, 2.2cqh, 1.14rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
+.poetic-text .highlight {
+  font-size: clamp(1.02rem, 2.3cqh, 1.16rem);
+}
+
+/* Divisor inferior con corazón dorado */
+.heart-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: clamp(5px, 1cqh, 8px);
+  width: 100%;
+}
+
+.divider-line {
+  display: inline-block;
+  width: clamp(32px, 11cqw, 44px);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(197, 160, 89, 0), rgba(197, 160, 89, 0.85), rgba(197, 160, 89, 0));
+}
+
+.gold-heart-icon {
+  display: inline-block;
+  color: var(--color-gold);
+  filter: drop-shadow(0 1px 2px rgba(197, 160, 89, 0.3));
+}
+
+/* ==========================================================================
+   Sección del Sobre Multicapa y Elementos Interactivos
+   ========================================================================== */
+.envelope-stage {
+  position: relative;
+  z-index: 6;
+  width: min(96%, 385px);
+  max-width: 385px;
+  margin: clamp(16px, 3.8cqh, 32px) auto 0 auto;
+  perspective: 1200px;
+  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.envelope-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 397 / 222;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Capas de imagen 800x600 mapeadas matemáticamente al rectángulo 397x222 */
+.envelope-layer {
+  position: absolute;
+  width: calc(100% * 800 / 397);
+  height: calc(100% * 600 / 222);
+  left: calc(-179 / 397 * 100%);
+  top: calc(-222 / 222 * 100%);
+  pointer-events: none;
+  display: block;
+}
+
+/* Capa 1 (Fondo trasero): z-index: 1 */
+.envelope-back {
+  z-index: 1;
+  filter:
+    drop-shadow(0 10px 16px rgba(15, 25, 45, 0.45))
+    drop-shadow(0 4px 8px rgba(15, 25, 45, 0.30));
+}
+
+/* Capa Solapa Superior Abierta: z-index: 2 (Oculta en estado inicial) */
+.envelope-flap-open {
+  z-index: 2;
+  transform: translateX(calc(-22.5 / 800 * 100%)) rotateX(-90deg);
+  transform-origin: 50% 37.17%;
+  opacity: 0;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s, opacity 0.65s ease 0.15s;
+}
+
+/* Capa Solapa Cerrada: z-index: 6 (Visible en estado inicial, plegada hacia abajo) */
+.envelope-flap-closed {
+  z-index: 6;
+  transform-origin: 50% 37.17%;
+  transform: translateX(calc(-22.5 / 800 * 100%)) rotateX(180deg);
+  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.55s ease;
+}
+
+/* Ranura/Bolsillo para la carta con clip-path 100% contenido en reposo */
+.envelope-card-slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  clip-path: inset(0 0 12px 0);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Capa Intermedia: Carta Interior con Captura Estática de Alta Fidelidad
+   Mantiene estrictamente proporción, encuadre superior y alineación vertical
+   ========================================================================== */
+.invitation-card {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 10px;
+  aspect-ratio: 425 / 715;
+  background-color: #FFFDF9;
+  border-radius: 12px;
+  border: 1px solid rgba(197, 160, 89, 0.28);
+  box-shadow: 0 10px 26px rgba(40, 30, 20, 0.16);
+  transform: translateY(45px);
+  will-change: transform, box-shadow;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.card-preview-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ==========================================================================
+   Capa 2: Bolsillo Frontal (z-index: 4)
+   ========================================================================== */
+.envelope-front {
+  z-index: 4;
+  filter: drop-shadow(0 4px 10px rgba(15, 25, 45, 0.15));
+}
+
+/* ==========================================================================
+   Elementos del Sello y Lazo (z-index: 10 / 11)
+   ========================================================================== */
+.seal-ribbon {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  width: clamp(74px, 10.8cqh, 90px);
+  height: clamp(56px, 8.1cqh, 68px);
+  background-image: url('../assets/lazo_sello.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 10;
+  filter: drop-shadow(0 4px 6px rgba(40, 60, 90, 0.15));
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.wax-seal {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(0);
+  width: clamp(62px, 8.8cqh, 74px);
+  height: clamp(62px, 8.8cqh, 74px);
+  z-index: 11;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: opacity 0.6s ease, transform 0.55s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease;
+  filter: var(--shadow-seal);
+  will-change: transform;
+}
+
+.wax-seal:hover {
+  transform: translate(-50%, -50%) scale(1.08) rotate(2deg);
+  filter: drop-shadow(0 8px 20px var(--color-gold-glow)) drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+}
+
+.wax-seal:active {
+  transform: translate(-50%, -50%) scale(0.94);
+}
+
+.seal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.seal-pulse-ring {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  opacity: 0;
+  pointer-events: none;
+  animation: sealPulse 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes sealPulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  60% { transform: scale(1.28); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.seal-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 55%);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Cachorro Leopardo / Tigre Bebé (Centrado e Imponente: z-index: 20)
+   ========================================================================== */
+.tiger-cub-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(-68.5% - 40px);
+  width: 156%;
+  max-width: 600px;
+  height: auto;
+  z-index: 20;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+}
+
+.tiger-cub-video {
+  display: none;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.tiger-cub-canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 6px 12px rgba(18, 30, 50, 0.22)) brightness(86%) contrast(116%) saturate(112%);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ==========================================================================
+   Llamada a la Acción Inferior (Toca el sobre)
+   ========================================================================== */
+.card-footer {
+  position: relative;
+  z-index: 25;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 clamp(8px, 1.5cqh, 12px) 0;
+  margin-top: clamp(80px, 15.5cqh, 130px);
+  margin-bottom: auto;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tap-invite-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.25s ease, filter 0.25s ease;
+  animation: gentlePulseCta 2.8s ease-in-out infinite;
+  user-select: none;
+}
+
+.tap-invite-container:hover {
+  transform: scale(1.05);
+}
+
+.tap-invite-container:active {
+  transform: scale(0.96);
+}
+
+.tap-invite-text {
+  font-family: var(--font-serif);
+  font-size: clamp(0.92rem, 2.1cqh, 1.05rem);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.18em;
+  color: var(--color-blue-ink);
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.tap-invite-decor {
+  width: clamp(130px, 19cqh, 155px);
+  height: 16px;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 1px 2px rgba(180, 140, 50, 0.25));
+}
+
+@keyframes gentlePulseCta {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Secuencia de Animación de Apertura del Sobre (4 Fases)
+   ========================================================================== */
+
+/* Al abrir: el sobre desciende sutilmente para enmarcar la carta */
+.envelope-stage.is-opening {
+  transform: translateY(32px);
+}
+
+/* Fase 1: Despegue del Sello y desvanecimiento suave de textos (~0.4s) */
+.envelope-stage.is-opening .wax-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.12);
+  pointer-events: none;
+}
+
+.envelope-stage.is-opening .seal-ribbon {
+  opacity: 0;
+  transform: translate(-50%, -10%) scale(1.12);
+  pointer-events: none;
+}
+
+.card-screen.is-opening .card-header,
+.card-screen.is-opening .card-footer {
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+}
+
+/* Fase 2: Apertura del Sobre (Despliegue de solapa capa_3.png hacia arriba) */
+.envelope-stage.is-opening .envelope-flap-closed {
+  opacity: 0;
+  transform: translateX(calc(-22.5 / 800 * 100%)) rotateX(90deg);
+  pointer-events: none;
+}
+
+.envelope-stage.is-opening .envelope-flap-open {
+  opacity: 1;
+  transform: translateX(calc(-22.5 / 800 * 100%)) rotateX(0deg);
+}
+
+/* Fase 3: Extracción de la Carta hacia arriba emergiendo del bolsillo */
+.envelope-stage.is-opening .envelope-card-slot {
+  clip-path: inset(-1000px 0 0 0);
+}
+
+.envelope-stage.is-opening .invitation-card {
+  transform: translateY(-240px) scale(1.02);
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.6s, box-shadow 0.9s ease 0.6s;
+  box-shadow: 0 24px 50px rgba(35, 25, 15, 0.28), 0 0 0 1px rgba(197, 160, 89, 0.3);
+}
+
+/* Fase 4: Capa de Expansión a Pantalla Completa (Takeover: z-index: 99999) */
+.card-takeover {
+  position: fixed;
+  background-color: #FFFDF9;
+  z-index: 99999;
+  pointer-events: none;
+  display: none;
+  overflow: hidden;
+  box-shadow: 0 24px 50px rgba(35, 25, 15, 0.28);
+  will-change: top, left, width, height, border-radius;
+}
+
+.card-takeover .card-preview-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Destello dorado al tocar */
+.gold-sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 30;
+  box-shadow: 0 0 8px #FFD700;
+  animation: sparkleFade 0.75s ease-out forwards;
+}
+
+@keyframes sparkleFade {
+  0% {
+    transform: scale(0.4) translate(0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.8) translate(var(--tx, 15px), var(--ty, -15px));
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Adaptabilidad Responsive (Móviles Reales y Pantallas Compactas)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .page-wrapper {
+    padding: 0;
+    background: transparent;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .mobile-device {
+    width: 100vw;
+    width: 100dvw;
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+    aspect-ratio: auto;
+  }
+
+  .card-screen {
+    padding: max(clamp(14px, 2.8cqh, 24px), env(safe-area-inset-top, 0px) + 12px)
+             clamp(12px, 4cqw, 20px)
+             max(clamp(12px, 2.2cqh, 18px), env(safe-area-inset-bottom, 0px) + 10px)
+             clamp(12px, 4cqw, 20px);
+  }
+}
+
+/* Dispositivos con pantallas pequeñas (e.g. iPhone SE, 360x640, o navegadores con barras activas) */
+@media (max-height: 700px), (max-width: 360px) {
+  .card-screen {
+    padding-top: max(12px, env(safe-area-inset-top, 0px) + 8px);
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px) + 8px);
+  }
+
+  .decor-layer {
+    top: 24px;
+  }
+
+  .decor-balloons {
+    width: 105px;
+    top: 6px;
+    left: 2px;
+  }
+
+  .decor-palms {
+    width: 140px;
+    top: -4px;
+    right: -4px;
+  }
+
+  .card-header {
+    margin-bottom: 6px;
+    transform: translateY(4px);
+  }
+
+  .crown-container {
+    width: 55px;
+  }
+
+  .poetic-text .verse {
+    font-size: 0.98rem;
+    line-height: 1.25;
+  }
+
+  .envelope-stage {
+    width: 90%;
+    max-width: 320px;
+    margin-top: 16px;
+  }
+
+  .card-footer {
+    margin-top: 85px;
+    padding-bottom: 6px;
+  }
+
+  .tap-invite-text {
+    font-size: 0.94rem;
+  }
+
+  .tap-invite-decor {
+    width: 135px;
+  }
+}
+
+/* Dispositivos ultra pequeños o pantallas horizontales muy bajas */
+@media (max-height: 580px) {
+  .card-screen {
+    padding: 8px 10px 6px 10px;
+  }
+
+  .card-header {
+    transform: translateY(2px);
+    margin-bottom: 4px;
+  }
+
+  .crown-container {
+    width: 46px;
+  }
+
+  .poetic-text .verse {
+    font-size: 0.88rem;
+    line-height: 1.2;
+  }
+
+  .envelope-stage {
+    width: 82%;
+    max-width: 270px;
+    margin-top: 8px;
+  }
+
+  .card-footer {
+    margin-top: 65px;
+    padding-bottom: 4px;
+  }
+
+  .tap-invite-text {
+    font-size: 0.88rem;
+  }
+
+  .tap-invite-decor {
+    width: 120px;
+  }
+}
+
+/* ==========================================================================
+   Árboles Safari y Escena Inferior (Sincronizado con invitacion.css)
+   ========================================================================== */
+.safari-tree,
+.zebra-tree {
+  position: absolute;
+  bottom: clamp(10px, 2.5cqw, 24px);
+  pointer-events: none;
+  z-index: 1; /* Al fondo de todo */
+  filter: drop-shadow(0 6px 14px rgba(43, 76, 126, 0.08));
+  overflow: visible;
+}
+
+.safari-tree-left,
+.zebra-tree-left {
+  left: clamp(-24px, -5cqw, -14px);
+  width: clamp(120px, 30cqw, 155px);
+}
+
+.safari-tree-right,
+.zebra-tree-right {
+  right: clamp(-24px, -5cqw, -14px);
+  width: clamp(120px, 30cqw, 155px);
+}
+
+.safari-tree-img,
+.zebra-tree-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.zebra-box {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  margin-top: -65px;
+  pointer-events: none;
+}
+
+.zebra-video-wrap {
+  transform: rotate(6deg);
+}

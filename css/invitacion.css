@@ -1,0 +1,1351 @@
+/* ==========================================================================
+   Invitación Interactiva - Liam Alexander (Segunda Página - Sección Superior)
+   Diseño Toile de Jouy, Acabado Porcelana Azul y Acentos en Oro Real
+   ========================================================================== */
+
+/* --- Variables Globales y Paleta de Color --- */
+:root {
+  --color-bg-page: #EDEAE5;
+  --color-ivory-light: #FFFDF9;
+  --color-ivory-mid: #FDFBF7;
+  --color-ivory-dark: #FAF4EB;
+
+  --color-blue-deep: #1A2F4C;
+  --color-blue-primary: #2B4C7E;
+  --color-blue-muted: #5B7B9E;
+  --color-blue-subtle: #7D97B5;
+
+  --color-gold-deep: #8E6D2F;
+  --color-gold: #C5A059;
+  --color-gold-bright: #D4AF37;
+  --color-gold-shimmer: #F3E5AB;
+
+  --font-cursive: 'Great Vibes', 'Alex Brush', cursive;
+  --font-serif: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --shadow-device: 0 28px 70px -15px rgba(45, 40, 35, 0.24), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  --shadow-soft-float: 0 10px 24px rgba(43, 76, 126, 0.12);
+}
+
+/* --- Resets Esenciales --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  font-family: var(--font-serif);
+  background-color: var(--color-bg-page);
+  color: var(--color-blue-primary);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Marco Exterior para Escritorio --- */
+.page-wrapper {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: radial-gradient(circle at 50% 25%, #F7F5F0 0%, #E4DFD5 100%);
+}
+
+/* --- Contenedor de la Invitación (Dispositivo Móvil) --- */
+.invitation-stage {
+  width: 100%;
+  max-width: 425px;
+  min-height: auto;
+  background: linear-gradient(180deg, var(--color-ivory-light) 0%, var(--color-ivory-mid) 40%, var(--color-ivory-dark) 100%);
+  border-radius: 38px;
+  box-shadow: var(--shadow-device);
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  container-type: inline-size;
+  container-name: card;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(197, 160, 89, 0.3) transparent;
+}
+
+@media (max-width: 600px) {
+  .page-wrapper {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+  .mobile-device,
+  .invitation-stage {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+.invitation-stage::-webkit-scrollbar {
+  width: 4px;
+}
+
+.invitation-stage::-webkit-scrollbar-thumb {
+  background: rgba(197, 160, 89, 0.3);
+  border-radius: 4px;
+}
+
+/* --- Arreglos Florales Superiores (Marco Toile de Jouy en las Esquinas) --- */
+.floral-frame {
+  position: absolute;
+  top: -8px;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 6px 14px rgba(43, 76, 126, 0.10));
+  overflow: visible;
+}
+
+.floral-top-left {
+  left: 0;
+  width: clamp(310px, 78cqw, 365px);
+}
+
+.floral-top-left .floral-img {
+  transform: translateX(-46%);
+}
+
+/* Arreglos Florales Continuos Laterales Izquierdos (Elefante y Cronómetro) */
+.floral-elephant-left,
+.floral-countdown-left {
+  position: absolute;
+  left: 0;
+  width: clamp(340px, 86cqw, 420px);
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 6px 14px rgba(43, 76, 126, 0.10));
+  overflow: visible;
+}
+
+.floral-elephant-left .floral-img,
+.floral-countdown-left .floral-img {
+  transform: translateX(-47.5%);
+}
+
+.floral-elephant-left {
+  top: clamp(650px, 60cqw + 400px, 690px);
+}
+
+.floral-countdown-left {
+  top: clamp(1070px, 86cqw + 720px, 1120px);
+}
+
+.floral-top-right {
+  right: 0;
+  width: clamp(310px, 78cqw, 365px);
+}
+
+.floral-top-right .floral-img {
+  transform: translateX(48%);
+}
+
+.floral-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Globos Decorativos Laterales --- */
+.lateral-balloons {
+  position: absolute;
+  top: clamp(210px, 28cqh, 255px);
+  pointer-events: none;
+  z-index: 3;
+  filter: drop-shadow(0 10px 22px rgba(43, 76, 126, 0.14));
+}
+
+.balloon-left {
+  left: clamp(-16px, -3cqw, -6px);
+  width: clamp(78px, 20cqw, 98px);
+  animation: gentleFloatLeft 4.5s ease-in-out infinite alternate;
+}
+
+.balloon-right {
+  right: clamp(-16px, -3cqw, -6px);
+  width: clamp(78px, 20cqw, 98px);
+  transform: scaleX(-1);
+  animation: gentleFloatRight 5s ease-in-out infinite alternate;
+}
+
+.balloon-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@keyframes gentleFloatLeft {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-8px) rotate(-1.5deg);
+  }
+}
+
+@keyframes gentleFloatRight {
+  0% {
+    transform: scaleX(-1) translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: scaleX(-1) translateY(-10px) rotate(2deg);
+  }
+}
+
+/* --- Contenido Principal --- */
+.invitation-content {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(14px, 2.5cqh, 22px) clamp(16px, 4cqw, 24px) 0 clamp(16px, 4cqw, 24px);
+  width: 100%;
+}
+
+/* ==========================================================================
+   1. Control de Música Superior Centrado
+   ========================================================================== */
+.music-player-section {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(8px, 1.8cqh, 16px);
+  margin-bottom: clamp(6px, 1.2cqh, 10px);
+}
+
+.player-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: default;
+  outline: none;
+  pointer-events: none;
+  transform: none !important;
+  transition: none !important;
+}
+
+.player-disc-container {
+  position: relative;
+  width: clamp(210px, calc(46cqw + 25px), 240px);
+  height: clamp(210px, calc(46cqw + 25px), 240px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Filigrana exterior con corona, laureles y cinta: TOTALMENTE FIJA Y ESTÁTICA */
+.ornament-filigree {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  filter: drop-shadow(0 3px 8px rgba(184, 137, 57, 0.32));
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Botón interactivo central: el efecto de click (presión) y hover aplica ÚNICAMENTE a este botón dorado */
+.player-button {
+  position: relative;
+  z-index: 2;
+  width: 57%;
+  height: 57%;
+  margin-top: -7%;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  outline: none;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease;
+}
+
+.player-button:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 4px 14px rgba(180, 140, 70, 0.45));
+}
+
+.player-button:active {
+  transform: scale(0.90) !important;
+  filter: drop-shadow(0 1px 3px rgba(40, 30, 20, 0.35));
+  transition: transform 0.08s ease;
+}
+
+.player-btn-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 5px rgba(40, 30, 20, 0.22));
+  transition: transform 0.2s ease;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.player-button:active .player-btn-icon {
+  animation: none !important;
+  transform: scale(0.96);
+}
+
+/* Ondas sonoras animadas */
+.sound-wave-bars {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 12px;
+  margin-top: -17px;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.wave-bar {
+  width: 3px;
+  height: 4px;
+  background: var(--color-gold);
+  border-radius: 2px;
+}
+
+.player-wrapper.is-playing .sound-wave-bars {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.player-wrapper.is-playing .wave-bar:nth-child(1) {
+  animation: waveBarAnim 0.9s ease-in-out infinite alternate;
+}
+.player-wrapper.is-playing .wave-bar:nth-child(2) {
+  animation: waveBarAnim 0.7s ease-in-out infinite alternate 0.2s;
+}
+.player-wrapper.is-playing .wave-bar:nth-child(3) {
+  animation: waveBarAnim 1.1s ease-in-out infinite alternate 0.4s;
+}
+.player-wrapper.is-playing .wave-bar:nth-child(4) {
+  animation: waveBarAnim 0.8s ease-in-out infinite alternate 0.1s;
+}
+
+@keyframes waveBarAnim {
+  0% {
+    height: 3px;
+  }
+  100% {
+    height: 12px;
+  }
+}
+
+.player-wrapper.is-playing .player-btn-icon {
+  animation: pulsePlayIcon 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulsePlayIcon {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.08);
+  }
+}
+
+/* ==========================================================================
+   2. Subtítulo Introductorio
+   ========================================================================== */
+.intro-heading {
+  margin-top: -16px;
+  margin-bottom: 22px;
+  text-align: center;
+  transform: translateY(10px);
+}
+
+.intro-subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(0.68rem, 1.7cqw, 0.76rem);
+  font-weight: 600;
+  letter-spacing: 3.2px;
+  text-transform: uppercase;
+  color: var(--color-blue-muted);
+  opacity: 0.92;
+}
+
+/* ==========================================================================
+   3. Zona de Impacto: Corona y Nombre Liam Alexander
+   ========================================================================== */
+.hero-name-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2px;
+  margin-bottom: clamp(6px, 1.5cqh, 12px);
+  text-align: center;
+}
+
+.name-crown-wrap {
+  width: clamp(48px, 11.5cqw, 58px);
+  height: auto;
+  margin-bottom: -4px;
+  display: flex;
+  justify-content: center;
+  animation: gentleCrownPulse 4s ease-in-out infinite alternate;
+}
+
+.name-crown-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 5px rgba(184, 137, 57, 0.28));
+}
+
+@keyframes gentleCrownPulse {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    transform: translateY(-2px) scale(1.03);
+  }
+}
+
+.main-name-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-cursive);
+  font-weight: 400;
+  line-height: 1.18;
+  text-align: center;
+  margin: -6px 0 0 0;
+  padding: 6px 14px 2px 14px;
+  overflow: visible;
+}
+
+.name-first,
+.name-second {
+  font-size: clamp(3.2rem, 10.5cqw, 4.3rem);
+  display: block;
+  line-height: 1.18;
+  padding: 8px 12px 4px 12px;
+  overflow: visible;
+  background: linear-gradient(135deg, #8E6D2F 0%, #C5A059 28%, #F3E5AB 48%, #D4AF37 68%, #8E6D2F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(142, 109, 47, 0.25));
+  letter-spacing: 0.5px;
+}
+
+.name-second {
+  margin-top: -14px;
+}
+
+/* ==========================================================================
+   4. Texto de Dedicatoria y Separador Ornamental
+   ========================================================================== */
+.dedication-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 320px;
+  margin: 6px auto 0 auto;
+  text-align: center;
+}
+
+.dedication-quote {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dedication-text {
+  font-family: var(--font-serif);
+  font-size: clamp(0.96rem, 2.4cqw, 1.10rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.52;
+  color: var(--color-blue-primary);
+  text-align: center;
+}
+
+/* Divisor Ornamental Dorado */
+.ornamental-gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  max-width: 220px;
+  margin-top: clamp(10px, 1.8cqh, 14px);
+  margin-bottom: 4px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.65), transparent);
+}
+
+.divider-symbol {
+  font-size: 0.60rem;
+  color: var(--color-gold);
+  opacity: 0.9;
+}
+
+.divider-heart {
+  font-size: 0.82rem;
+  color: var(--color-gold);
+  filter: drop-shadow(0 1px 3px rgba(197, 160, 89, 0.35));
+}
+
+/* ==========================================================================
+   5. Escena Animada: Elefantito y Mariposas con Fondo Transparente en Vivo
+   ========================================================================== */
+.hidden-source-video {
+  display: none;
+}
+
+.scene-stage {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  max-width: 360px;
+  margin-top: clamp(10px, 1.8cqh, 16px);
+  min-height: 230px;
+}
+
+/* Contenedor del Elefantito */
+.elephant-container {
+  position: relative;
+  z-index: 2;
+  width: clamp(210px, 58cqw, 260px);
+  height: auto;
+  display: flex;
+  justify-content: center;
+  /* Suave difuminado en la base del pedestal para disolver la línea de corte */
+  -webkit-mask-image: linear-gradient(to bottom, black 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 86%, transparent 100%);
+}
+
+.elephant-canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(43, 76, 126, 0.12));
+  pointer-events: none;
+}
+
+/* Mariposas Laterales */
+.butterfly-container {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.butterfly-container.is-ready {
+  opacity: 1;
+}
+
+.butterfly-left {
+  left: clamp(10px, 4cqw, 22px);
+  bottom: clamp(70px, calc(18cqh - 10px), 100px);
+  width: clamp(68px, 18cqw, 86px);
+  animation: flutterHoverLeft 3.8s ease-in-out infinite alternate;
+}
+
+.butterfly-right {
+  right: clamp(10px, 4cqw, 22px);
+  bottom: clamp(100px, calc(18cqh + 20px), 130px);
+  width: clamp(68px, 18cqw, 86px);
+  animation: flutterHoverRight 4.2s ease-in-out infinite alternate;
+}
+
+.butterfly-canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+@keyframes flutterHoverLeft {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-3deg);
+  }
+  100% {
+    transform: translateY(-4px) rotate(2deg);
+  }
+}
+
+@keyframes flutterHoverRight {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+  100% {
+    transform: translateY(-3px) rotate(-2deg);
+  }
+}
+
+/* ==========================================================================
+   6. Sección Media: Fecha, Hora, Ubicación, Contador y Jirafita Animada
+   ========================================================================== */
+.event-details-section {
+  position: relative;
+  width: 100%;
+  margin-top: clamp(16px, 2.5cqh, 24px);
+  padding: 10px 4px 0 4px;
+  margin-bottom: 0;
+  z-index: 5;
+}
+
+/* Ramo Botánico Lateral Izquierdo */
+.side-floral {
+  position: absolute;
+  top: -10px;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 4px 10px rgba(43, 76, 126, 0.08));
+  overflow: visible;
+}
+
+.side-floral-left {
+  left: -15px;
+  width: clamp(340px, 85cqw, 420px);
+}
+
+.side-floral-left .side-floral-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: translateX(-47%);
+}
+
+/* Jirafita Animada Lateral Derecha (+150px de tamaño) */
+.side-giraffe-container {
+  position: absolute;
+  right: clamp(-15px, -3cqw, 0px);
+  top: clamp(15px, 3cqh, 35px);
+  width: clamp(290px, 72cqw, 325px);
+  transform: translateX(100px);
+  pointer-events: none;
+  z-index: 2;
+  -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+}
+
+.giraffe-canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 20px rgba(43, 76, 126, 0.12));
+}
+
+/* Contenedor Central de Filas de Información */
+.event-info-container {
+  position: relative;
+  z-index: 4;
+  max-width: 280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  width: 100%;
+  padding: 4px 6px;
+}
+
+.event-icon-col {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-svg-icon {
+  width: 38px;
+  height: 38px;
+  display: block;
+  filter: drop-shadow(0 2px 5px rgba(184, 137, 57, 0.22));
+}
+
+.event-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.event-day-name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.98rem;
+  color: var(--color-blue-muted);
+  line-height: 1.2;
+}
+
+.event-main-value {
+  font-family: var(--font-serif);
+  font-size: 1.38rem;
+  font-weight: 700;
+  color: #1A2F4C;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+}
+
+.event-year-name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--color-gold-deep);
+  line-height: 1.2;
+}
+
+.event-time-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.90rem;
+  color: var(--color-blue-muted);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.time-value {
+  font-size: 1.48rem;
+  color: #1A2F4C;
+}
+
+.event-venue-name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.90rem;
+  color: var(--color-gold-deep);
+  line-height: 1.2;
+}
+
+.event-address-text {
+  font-family: var(--font-serif);
+  font-style: normal;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1A2F4C;
+  line-height: 1.3;
+  margin: 1px 0 7px 0;
+}
+
+/* Botón Dorado a Google Maps */
+.btn-location-map {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: linear-gradient(135deg, #C5A059 0%, #D4AF37 50%, #B68B40 100%);
+  color: #FFFDF9;
+  border-radius: 20px;
+  font-family: var(--font-sans);
+  font-size: 0.70rem;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(184, 137, 57, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-location-map:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(184, 137, 57, 0.38);
+}
+
+.btn-location-map:active {
+  transform: translateY(0);
+}
+
+.btn-map-text {
+  color: #FFFDF9;
+}
+
+.btn-map-arrow {
+  display: inline-block;
+  color: #FFFDF9;
+}
+
+/* Separadores entre filas */
+.event-row-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 6px 0;
+  width: 100%;
+  color: var(--color-gold);
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.divider-heart-mini {
+  color: var(--color-gold);
+  font-size: 0.75rem;
+}
+
+.dot-cluster {
+  letter-spacing: 2px;
+  color: var(--color-gold);
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   Sección de Cuenta Regresiva (Countdown Timer)
+   ========================================================================== */
+.countdown-section {
+  margin-top: clamp(24px, 3.8cqh, 32px);
+  margin-bottom: 0;
+  padding-bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+.countdown-heading {
+  font-family: var(--font-sans);
+  font-size: clamp(0.72rem, 1.8cqw, 0.80rem);
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-blue-muted);
+  margin-bottom: 12px;
+}
+
+.countdown-boxes-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(4px, 1.2cqw, 7px);
+}
+
+/* ==========================================================================
+   Display del Cronómetro: Marco Cartela Barroca / Espejo Vintage Dorado
+   ========================================================================== */
+.countdown-box {
+  position: relative;
+  width: clamp(62px, 16cqw, 72px);
+  height: clamp(74px, 19cqw, 84px);
+  padding: 6px 2px 5px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 82' fill='none'%3E%3Cdefs%3E%3ClinearGradient id='goldGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ECC880'/%3E%3Cstop offset='40%25' stop-color='%23C59A47'/%3E%3Cstop offset='70%25' stop-color='%23E7C986'/%3E%3Cstop offset='100%25' stop-color='%239F752C'/%3E%3C/linearGradient%3E%3CradialGradient id='innerGlow' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='60%25' stop-color='%23FFFDF9' stop-opacity='0'/%3E%3Cstop offset='100%25' stop-color='%23ECC880' stop-opacity='0.25'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpath d='M 9.7 1.2 H 60.3 A 8.5 8.5 0 0 0 68.8 9.7 V 72.3 A 8.5 8.5 0 0 0 60.3 80.8 H 9.7 A 8.5 8.5 0 0 0 1.2 72.3 V 9.7 A 8.5 8.5 0 0 0 9.7 1.2 Z' fill='%23FFFDF9' fill-opacity='0.75'/%3E%3Cpath d='M 9.7 1.2 H 60.3 A 8.5 8.5 0 0 0 68.8 9.7 V 72.3 A 8.5 8.5 0 0 0 60.3 80.8 H 9.7 A 8.5 8.5 0 0 0 1.2 72.3 V 9.7 A 8.5 8.5 0 0 0 9.7 1.2 Z' fill='url(%23innerGlow)'/%3E%3Cpath d='M 9.7 1.2 H 60.3 A 8.5 8.5 0 0 0 68.8 9.7 V 72.3 A 8.5 8.5 0 0 0 60.3 80.8 H 9.7 A 8.5 8.5 0 0 0 1.2 72.3 V 9.7 A 8.5 8.5 0 0 0 9.7 1.2 Z' stroke='url(%23goldGrad)' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M 11.7 3.4 H 58.3 A 10.7 10.7 0 0 0 66.6 11.7 V 70.3 A 10.7 10.7 0 0 0 58.3 78.6 H 11.7 A 10.7 10.7 0 0 0 3.4 70.3 V 11.7 A 10.7 10.7 0 0 0 11.7 3.4 Z' stroke='%23C59A47' stroke-opacity='0.42' stroke-width='1' stroke-linejoin='round'/%3E%3Cg fill='url(%23goldGrad)'%3E%3Ccircle cx='4.5' cy='4.5' r='1.5'/%3E%3Cpath d='M 4.5 1.8 L 5.3 4.5 L 4.5 7.2 L 3.7 4.5 Z'/%3E%3Cpath d='M 1.8 4.5 L 4.5 5.3 L 7.2 4.5 L 4.5 3.7 Z'/%3E%3Ccircle cx='65.5' cy='4.5' r='1.5'/%3E%3Cpath d='M 65.5 1.8 L 66.3 4.5 L 65.5 7.2 L 64.7 4.5 Z'/%3E%3Cpath d='M 62.8 4.5 L 65.5 5.3 L 68.2 4.5 L 65.5 3.7 Z'/%3E%3Ccircle cx='4.5' cy='77.5' r='1.5'/%3E%3Cpath d='M 4.5 74.8 L 5.3 77.5 L 4.5 80.2 L 3.7 77.5 Z'/%3E%3Cpath d='M 1.8 77.5 L 4.5 78.3 L 7.2 77.5 L 4.5 76.7 Z'/%3E%3Ccircle cx='65.5' cy='77.5' r='1.5'/%3E%3Cpath d='M 65.5 74.8 L 66.3 77.5 L 65.5 80.2 L 64.7 77.5 Z'/%3E%3Cpath d='M 62.8 77.5 L 65.5 78.3 L 68.2 77.5 L 65.5 76.7 Z'/%3E%3C/g%3E%3Cg fill='%23FFFDF9'%3E%3Ccircle cx='4.5' cy='4.5' r='0.8'/%3E%3Ccircle cx='65.5' cy='4.5' r='0.8'/%3E%3Ccircle cx='4.5' cy='77.5' r='0.8'/%3E%3Ccircle cx='65.5' cy='77.5' r='0.8'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  filter: drop-shadow(0 4px 10px rgba(180, 140, 70, 0.14));
+  box-shadow: 0 4px 10px rgba(180, 140, 70, 0.12), inset 0 0 6px rgba(236, 200, 128, 0.15);
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.countdown-box:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 6px 14px rgba(180, 140, 70, 0.22));
+}
+
+/* Limpieza de pseudo-elementos previos para dar paso a la silueta vectorial de la cartela */
+.countdown-box::before,
+.countdown-box::after {
+  content: none;
+}
+
+/* Tipografía de los dígitos (azul porcelana profundo, serif clásica de alto contraste) */
+.countdown-num {
+  font-family: 'Cinzel', var(--font-serif);
+  font-size: clamp(1.42rem, 4.2cqw, 1.72rem);
+  font-weight: 700;
+  color: #234275;
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+/* Etiquetas de unidad: mayúsculas pequeñas, espaciadas y en azul grisáceo tenue */
+.countdown-unit {
+  font-family: var(--font-sans);
+  font-size: clamp(8px, 1.9cqw, 9.5px);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #6E8299;
+  margin-top: 5px;
+  position: relative;
+  z-index: 2;
+  text-transform: uppercase;
+}
+
+/* Separadores: dos puntos verticales centrados en color dorado metálico (#C59A47) */
+.countdown-colon {
+  font-family: 'Cinzel', var(--font-serif);
+  font-size: clamp(1.3rem, 3.5cqw, 1.6rem);
+  font-weight: 700;
+  color: #C59A47;
+  line-height: 1;
+  margin-top: -6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.95;
+  text-shadow: 0 1px 2px rgba(236, 200, 128, 0.4);
+}
+
+.countdown-finished-msg {
+  font-family: var(--font-cursive);
+  font-size: 2.2rem;
+  color: var(--color-gold-deep);
+  margin-top: 10px;
+}
+
+/* Etiqueta de texto debajo del reproductor de música (oculta) */
+.player-label-text {
+  display: none !important;
+}
+
+/* ==========================================================================
+   7. Sección de Confirmación de Asistencia (RSVP WhatsApp)
+   ========================================================================== */
+.rsvp-section {
+  width: 100%;
+  margin-top: 15px; /* Exactamente 15px de separación bajo el cronómetro */
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 6;
+}
+
+.rsvp-card {
+  width: 100%;
+  max-width: 360px;
+  background: linear-gradient(165deg, rgba(255, 253, 249, 0.94) 0%, rgba(253, 251, 247, 0.88) 60%, rgba(248, 242, 230, 0.92) 100%);
+  border: 1.5px solid rgba(197, 160, 89, 0.55);
+  border-radius: 18px;
+  padding: clamp(20px, 3.5cqh, 28px) clamp(16px, 3.5cqw, 22px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 
+    0 10px 30px rgba(43, 76, 126, 0.08),
+    0 2px 8px rgba(197, 160, 89, 0.12),
+    inset 0 0 12px rgba(236, 200, 128, 0.15);
+  position: relative;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Doble filete interior para la tarjeta RSVP */
+.rsvp-card::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+.rsvp-ornament-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 70%;
+  margin-bottom: 12px;
+}
+
+.rsvp-ornament-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.7), transparent);
+}
+
+.rsvp-ornament-icon {
+  color: var(--color-gold);
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.rsvp-title {
+  font-family: 'Cinzel', var(--font-serif);
+  font-size: clamp(1.05rem, 2.8cqw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-blue-deep);
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.rsvp-subtitle {
+  font-family: var(--font-serif);
+  font-size: clamp(0.92rem, 2.3cqw, 1.05rem);
+  font-style: italic;
+  color: var(--color-blue-muted);
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.btn-rsvp-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #1A3459 0%, #2B4C7E 50%, #1A3459 100%);
+  color: #FFFDF9;
+  text-decoration: none;
+  padding: 13px 32px;
+  border-radius: 30px;
+  border: 1.5px solid var(--color-gold);
+  box-shadow: 
+    0 6px 18px rgba(43, 76, 126, 0.28),
+    0 0 0 1px rgba(235, 203, 137, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  font-family: var(--font-sans);
+  font-size: clamp(0.82rem, 2.2cqw, 0.92rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.btn-rsvp-whatsapp:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(135deg, #244473 0%, #365F9E 50%, #244473 100%);
+  box-shadow: 
+    0 10px 24px rgba(43, 76, 126, 0.35),
+    0 0 12px rgba(212, 175, 55, 0.5);
+  color: #FFFFFF;
+}
+
+.btn-rsvp-whatsapp:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.whatsapp-icon {
+  color: #25D366;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* ==========================================================================
+   8. Escena Inferior Safari: Árboles de Fondo, Video Cebra Bebé y Cartela
+   ========================================================================== */
+.bottom-safari-scene,
+.zebra-scene-container {
+  position: relative;
+  width: calc(100% + clamp(32px, 8cqw, 48px));
+  margin-left: calc(-1 * clamp(16px, 4cqw, 24px));
+  margin-right: calc(-1 * clamp(16px, 4cqw, 24px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(14px, 2.8cqh, 24px);
+  padding-bottom: 10px; /* Parte inferior exactamente a 10px del cartel */
+  overflow: visible;
+  z-index: 6;
+}
+
+/* Árboles Safari: Fuera de la caja de la cebra y AL FONDO DE TODO (z-index: 1) */
+.safari-tree,
+.zebra-tree {
+  position: absolute;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1; /* Al fondo de todo, detrás de la cebra y del cartel */
+  filter: drop-shadow(0 6px 14px rgba(43, 76, 126, 0.08));
+  overflow: visible;
+}
+
+/* Árbol Izquierdo: reducido 30px */
+.safari-tree-left,
+.zebra-tree-left {
+  left: clamp(-24px, -5cqw, -14px);
+  width: clamp(120px, 30cqw, 155px);
+}
+
+/* Árbol Derecho: reducido 30px */
+.safari-tree-right,
+.zebra-tree-right {
+  right: clamp(-24px, -5cqw, -14px);
+  width: clamp(120px, 30cqw, 155px);
+}
+
+.safari-tree-img,
+.zebra-tree-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Caja de la Cebra Bebé: Capa superior sobre el cartel (z-index: 3) */
+.zebra-box {
+  position: relative;
+  z-index: 3; /* Por delante del cartel para que las flores y hojas se superpongan */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -65px; /* Sube la cebra 5px adicionales (65px arriba en total) */
+  margin-bottom: 0;
+  padding: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* Envoltorio del Video de la Cebra Bebé (70% - 75% del ancho del móvil) */
+.zebra-video-wrap {
+  position: relative;
+  z-index: 3;
+  width: clamp(245px, 74cqw, 310px);
+  max-width: 76%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(6deg); /* Gira 3 grados más a la derecha (6° en total) */
+}
+
+/* Canvas con extracción de fondo en tiempo real (100% transparente y fundido) */
+.zebra-canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+  mask-image: radial-gradient(circle at 50% 50%, black 72%, transparent 98%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 72%, transparent 98%);
+  filter: drop-shadow(0 8px 18px rgba(43, 76, 126, 0.08));
+  pointer-events: none;
+}
+
+/* Cartel / Cartela Final de Agradecimiento: Pegado a la cebra y al fondo (z-index: 2) */
+.thanks-cartouche {
+  position: relative;
+  z-index: 2; /* Al fondo respecto a la cebra (las flores de la cebra van por encima) */
+  width: clamp(300px, 86cqw, 355px);
+  max-width: 90%;
+  margin-top: clamp(-62px, -15cqw, -46px); /* Baja el cartel 5px adicionales */
+  padding: clamp(26px, 4.5cqw, 32px) clamp(16px, 3.5cqw, 22px) clamp(14px, 3cqw, 18px);
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 350 140' fill='none'%3E%3Cdefs%3E%3ClinearGradient id='goldThanks' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ECC880'/%3E%3Cstop offset='40%25' stop-color='%23C59A47'/%3E%3Cstop offset='70%25' stop-color='%23E7C986'/%3E%3Cstop offset='100%25' stop-color='%239F752C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M 12.5 1.5 H 337.5 A 11 11 0 0 0 348.5 12.5 V 127.5 A 11 11 0 0 0 337.5 138.5 H 12.5 A 11 11 0 0 0 1.5 127.5 V 12.5 A 11 11 0 0 0 12.5 1.5 Z' fill='%23FFFDF9' fill-opacity='0.95'/%3E%3Cpath d='M 12.5 1.5 H 337.5 A 11 11 0 0 0 348.5 12.5 V 127.5 A 11 11 0 0 0 337.5 138.5 H 12.5 A 11 11 0 0 0 1.5 127.5 V 12.5 A 11 11 0 0 0 12.5 1.5 Z' stroke='url(%23goldThanks)' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M 14.8 4.0 H 335.2 A 13.5 13.5 0 0 0 346.0 14.8 V 125.2 A 13.5 13.5 0 0 0 335.2 136.0 H 14.8 A 13.5 13.5 0 0 0 4.0 125.2 V 14.8 A 13.5 13.5 0 0 0 14.8 4.0 Z' stroke='%23C59A47' stroke-opacity='0.42' stroke-width='1' stroke-linejoin='round'/%3E%3Cg fill='url(%23goldThanks)'%3E%3Ccircle cx='6' cy='6' r='2'/%3E%3Ccircle cx='344' cy='6' r='2'/%3E%3Ccircle cx='6' cy='134' r='2'/%3E%3Ccircle cx='344' cy='134' r='2'/%3E%3C/g%3E%3Cg fill='%23FFFDF9'%3E%3Ccircle cx='6' cy='6' r='0.9'/%3E%3Ccircle cx='344' cy='6' r='0.9'/%3E%3Ccircle cx='6' cy='134' r='0.9'/%3E%3Ccircle cx='344' cy='134' r='0.9'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: none;
+  filter: none;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Corona imperial en la cresta de la cartela */
+.cartouche-crown-wrap {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(34px, 8.5cqw, 40px);
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 5px rgba(180, 140, 70, 0.35));
+}
+
+.cartouche-crown-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Línea Superior: Serif sobria en azul porcelana */
+.thanks-top-text {
+  font-family: var(--font-serif);
+  font-size: clamp(0.92rem, 2.4cqw, 1.05rem);
+  font-style: italic;
+  color: #2B4C7E;
+  line-height: 1.4;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  max-width: 310px;
+}
+
+/* Línea Destacada: Fuente caligráfica clásica fluida */
+.thanks-highlight-text {
+  font-family: var(--font-cursive);
+  font-size: clamp(1.80rem, 5.2cqw, 2.35rem);
+  font-weight: 400;
+  color: #1A2F4C;
+  line-height: 1.22;
+  margin-bottom: 8px;
+  max-width: 320px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
+}
+
+/* Remate Inferior: Corazón azul porcelana con filetes dorados */
+.thanks-bottom-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 55%;
+  margin: 6px auto 2px auto;
+}
+
+.thanks-ornament-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.65), transparent);
+}
+
+.thanks-bottom-symbol {
+  color: #2B4C7E;
+  font-size: 0.95rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.8));
+}
+
+/* ==========================================================================
+   Adaptaciones Responsivas (Móviles reales y pantallas bajas)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .page-wrapper {
+    padding: 0;
+    background: var(--color-ivory-mid);
+  }
+
+  .invitation-stage {
+    max-width: 100%;
+    min-height: auto;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Ajuste proporcional de árboles safari para pantallas de móvil reales (ej. 6.8") */
+  .safari-tree,
+  .zebra-tree {
+    bottom: 0;
+  }
+
+  .safari-tree-left,
+  .zebra-tree-left {
+    left: -15px;
+    width: clamp(115px, 30vw, 150px);
+  }
+
+  .safari-tree-right,
+  .zebra-tree-right {
+    right: -15px;
+    width: clamp(115px, 30vw, 150px);
+  }
+}
+
+@media (max-height: 680px) {
+  .music-player-section {
+    margin-bottom: 6px;
+  }
+
+  .player-disc-container {
+    width: 190px;
+    height: 190px;
+  }
+
+  .name-first,
+  .name-second {
+    font-size: 3.1rem;
+  }
+
+  .dedication-text {
+    font-size: 0.94rem;
+    line-height: 1.45;
+  }
+
+  .scene-stage {
+    margin-top: 8px;
+    min-height: 180px;
+  }
+
+  .elephant-container {
+    width: 190px;
+  }
+
+  .floral-elephant-left {
+    top: 550px;
+    width: 310px;
+  }
+
+  .floral-countdown-left {
+    top: 930px;
+    width: 310px;
+  }
+}

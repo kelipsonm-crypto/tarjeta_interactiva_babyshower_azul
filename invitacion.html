@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Invitación Especial | Liam Alexander</title>
+  
+  <meta name="description" content="Invitación especial: Celebramos la llegada de Liam Alexander. Descubre los detalles y acompáñanos en esta dulce espera.">
+  <meta name="theme-color" content="#FDFBF7">
+
+  <!-- Google Fonts: Great Vibes, Cinzel (Serif clásica romana para números), Cormorant Garamond (Serif clásica) y Montserrat (Modern Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos de la Invitación -->
+  <link rel="stylesheet" href="css/invitacion.css?v=47">
+</head>
+<body>
+  <!-- Contenedor exterior para escritorio -->
+  <main class="page-wrapper">
+    <!-- Marco de dispositivo móvil -->
+    <div class="mobile-device invitation-stage" id="invitationStage">
+
+      <!-- Arreglos Florales Superiores (Marco Toile de Jouy en las Esquinas) -->
+      <div class="floral-frame floral-top-left" aria-hidden="true">
+        <img src="assets/diseno_floral_grande_izquierdo.png" alt="" class="floral-img" />
+      </div>
+      <div class="floral-frame floral-top-right" aria-hidden="true">
+        <img src="assets/diseno_floral_grande_derecho.png" alt="" class="floral-img" />
+      </div>
+
+      <!-- Arreglo Floral Continuo Lateral Izquierdo (Elefante y Cronómetro) -->
+      <div class="floral-frame floral-elephant-left" aria-hidden="true">
+        <img src="assets/diseno_floral_izquierdo.png" alt="" class="floral-img" />
+      </div>
+      <div class="floral-frame floral-countdown-left" aria-hidden="true">
+        <img src="assets/diseno_floral_izquierdo.png" alt="" class="floral-img" />
+      </div>
+
+      <!-- Globos Decorativos Laterales con Flotación Suave -->
+      <aside class="lateral-balloons balloon-left" aria-hidden="true">
+        <img src="assets/globos1.png" alt="" class="balloon-img" />
+      </aside>
+      <aside class="lateral-balloons balloon-right" aria-hidden="true">
+        <img src="assets/globos1.png" alt="" class="balloon-img" />
+      </aside>
+
+      <!-- Contenido Principal de la Invitación -->
+      <div class="invitation-content">
+
+        <!-- 1. Control de Música Superior Centrado -->
+        <header class="music-player-section" aria-label="Reproductor de música">
+          <div class="player-wrapper" id="playerWrapper">
+            <div class="player-disc-container">
+              <!-- Filigrana ornamental con cinta original -->
+              <img src="assets/diseno_reproducir.png?v=3" alt="Reproduce mi canción" class="ornament-filigree" id="ornamentFiligree" aria-hidden="true" />
+              <!-- Botón interactivo central -->
+              <button class="player-button" id="playBtn" type="button" aria-label="Reproducir música" title="Reproducir música">
+                <img src="assets/boton_reproducir.png" alt="Reproducir" class="player-btn-icon" id="playBtnIcon" />
+              </button>
+            </div>
+            <!-- Ondas sonoras animadas -->
+            <div class="sound-wave-bars" id="soundWaves" aria-hidden="true">
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+            </div>
+          </div>
+          <!-- Etiqueta del reproductor inyectada dinámicamente (oculta) -->
+          <p class="player-label-text" id="playerTextLabel" style="display: none;"></p>
+          <!-- Elemento de audio de fondo inyectado dinámicamente -->
+          <audio id="bgMusic" src="assets/mi_cancion.mp3" loop preload="auto"></audio>
+        </header>
+
+        <!-- 2. Subtítulo Introductorio -->
+        <div class="intro-heading">
+          <p class="intro-subtitle" id="introSubtitle">CELEBRAMOS LA LLEGADA DE</p>
+        </div>
+
+        <!-- 3. Zona de Impacto: Corona y Nombre -->
+        <section class="hero-name-section" aria-label="Nombre del homenajeado">
+          <div class="name-crown-wrap" aria-hidden="true">
+            <img src="assets/corona.png" alt="Corona real dorada" class="name-crown-img" />
+          </div>
+          <h1 class="main-name-title" id="mainNameTitle">
+            <span class="name-first" id="nameFirst">Liam</span>
+            <span class="name-second" id="nameSecond">Alexander</span>
+          </h1>
+        </section>
+
+        <!-- 4. Texto de Dedicatoria y Separador Ornamental -->
+        <section class="dedication-section" aria-label="Dedicatoria">
+          <blockquote class="dedication-quote">
+            <p class="dedication-text" id="dedicationText">«Hay un pequeño corazón que ya llena nuestras vidas de amor. Liam Alexander está por llegar y no podemos esperar para conocerlo, abrazarlo y comenzar esta nueva aventura juntos.»</p>
+          </blockquote>
+
+          <!-- Divisor Ornamental Fino Dorado -->
+          <div class="ornamental-gold-divider" aria-hidden="true">
+            <span class="divider-line"></span>
+            <span class="divider-symbol">◆</span>
+            <span class="divider-heart">♥</span>
+            <span class="divider-symbol">◆</span>
+            <span class="divider-line"></span>
+          </div>
+        </section>
+
+        <!-- 5. Escena Animada: Elefantito y Mariposas con Fondo Transparente en Tiempo Real -->
+        <section class="scene-stage" aria-label="Animación del elefantito y mariposas">
+          <!-- Mariposa Izquierda (Video source oculto + Canvas transparente) -->
+          <div class="butterfly-container butterfly-left" aria-hidden="true">
+            <video class="hidden-source-video" id="butterflyLeftVideo" src="assets/maripoza_izquierda.mp4" autoplay loop muted playsinline></video>
+            <canvas class="butterfly-canvas" id="butterflyLeftCanvas" width="160" height="160"></canvas>
+          </div>
+
+          <!-- Elefantito Centrado (Video source oculto + Canvas transparente) -->
+          <div class="elephant-container">
+            <video class="hidden-source-video" id="elephantVideo" src="assets/elefante_bebe.mp4" autoplay loop muted playsinline></video>
+            <canvas class="elephant-canvas" id="elephantCanvas" width="400" height="400"></canvas>
+          </div>
+
+          <!-- Mariposa Derecha (Video source oculto + Canvas transparente) -->
+          <div class="butterfly-container butterfly-right" aria-hidden="true">
+            <video class="hidden-source-video" id="butterflyRightVideo" src="assets/maripoza_derecha.mp4" autoplay loop muted playsinline></video>
+            <canvas class="butterfly-canvas" id="butterflyRightCanvas" width="160" height="160"></canvas>
+          </div>
+        </section>
+
+        <!-- ==========================================================================
+             6. Sección Media: Fecha, Hora, Ubicación, Contador y Jirafita Animada
+             ========================================================================== -->
+        <section class="event-details-section" aria-label="Detalles del Evento y Cuenta Regresiva">
+
+          <!-- Ramo Botánico Lateral Izquierdo -->
+          <div class="side-floral side-floral-left" aria-hidden="true">
+            <img src="assets/diseno_floral_izquierdo.png" alt="" class="side-floral-img" />
+          </div>
+
+          <!-- Jirafita Animada Lateral Derecha (Canvas en tiempo real) -->
+          <div class="side-giraffe-container" aria-hidden="true">
+            <video class="hidden-source-video" id="giraffeVideo" src="assets/jirafa_bebe.mp4" autoplay loop muted playsinline></video>
+            <canvas class="giraffe-canvas" id="giraffeCanvas" width="500" height="500"></canvas>
+          </div>
+
+          <!-- Contenedor Central de Filas de Información -->
+          <div class="event-info-container">
+
+            <!-- Fila 1: Fecha del Evento (Calendario) -->
+            <div class="event-row event-date-row">
+              <div class="event-icon-col" aria-hidden="true">
+                <svg class="event-svg-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="6" width="28" height="26" rx="4" fill="#FFFDF9" stroke="#C5A059" stroke-width="1.8"/>
+                  <path d="M4 13H32" stroke="#C5A059" stroke-width="1.6"/>
+                  <rect x="4" y="6" width="28" height="7" rx="3" fill="#2B4C7E"/>
+                  <line x1="10" y1="3" x2="10" y2="8" stroke="#C5A059" stroke-width="2.2" stroke-linecap="round"/>
+                  <line x1="26" y1="3" x2="26" y2="8" stroke="#C5A059" stroke-width="2.2" stroke-linecap="round"/>
+                  <circle cx="11" cy="19" r="1.6" fill="#C5A059"/>
+                  <circle cx="18" cy="19" r="1.6" fill="#C5A059"/>
+                  <circle cx="25" cy="19" r="1.6" fill="#C5A059"/>
+                  <circle cx="11" cy="25" r="1.6" fill="#C5A059"/>
+                  <circle cx="18" cy="25" r="2.2" fill="#D4AF37" stroke="#2B4C7E" stroke-width="0.8"/>
+                  <circle cx="25" cy="25" r="1.6" fill="#C5A059"/>
+                </svg>
+              </div>
+              <div class="event-text-col">
+                <span class="event-day-name" id="eventDayName"></span>
+                <span class="event-main-value" id="eventDateVal"></span>
+                <span class="event-year-name" id="eventYearName"></span>
+              </div>
+            </div>
+
+            <!-- Separador Fino con Corazón Central -->
+            <div class="event-row-divider" aria-hidden="true">
+              <span class="dot-cluster">· · ·</span>
+              <span class="divider-heart-mini">♥</span>
+              <span class="dot-cluster">· · ·</span>
+            </div>
+
+            <!-- Fila 2: Hora del Evento (Reloj) -->
+            <div class="event-row event-time-row">
+              <div class="event-icon-col" aria-hidden="true">
+                <svg class="event-svg-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="18" cy="4.5" r="2.5" stroke="#C5A059" stroke-width="1.5"/>
+                  <rect x="16.5" y="6" width="3" height="2" fill="#C5A059"/>
+                  <circle cx="18" cy="20" r="13" fill="#FFFDF9" stroke="#C5A059" stroke-width="2"/>
+                  <circle cx="18" cy="20" r="10.8" stroke="#2B4C7E" stroke-width="0.8" stroke-dasharray="1.5 2"/>
+                  <line x1="18" y1="20" x2="18" y2="12.5" stroke="#1A2F4C" stroke-width="1.8" stroke-linecap="round"/>
+                  <line x1="18" y1="20" x2="11.8" y2="23.2" stroke="#C5A059" stroke-width="1.8" stroke-linecap="round"/>
+                  <circle cx="18" cy="20" r="1.5" fill="#D4AF37"/>
+                </svg>
+              </div>
+              <div class="event-text-col">
+                <span class="event-time-label" id="eventTimeLabel">Recepción</span>
+                <span class="event-main-value time-value" id="eventTimeVal"></span>
+              </div>
+            </div>
+
+            <!-- Separador Fino con Corazón Central -->
+            <div class="event-row-divider" aria-hidden="true">
+              <span class="dot-cluster">· · ·</span>
+              <span class="divider-heart-mini">♥</span>
+              <span class="dot-cluster">· · ·</span>
+            </div>
+
+            <!-- Fila 3: Ubicación y Botón de Google Maps -->
+            <div class="event-row event-location-row">
+              <div class="event-icon-col" aria-hidden="true">
+                <svg class="event-svg-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 4C11.9 4 7 8.9 7 15C7 22.5 18 32 18 32C18 32 29 22.5 29 15C29 8.9 24.1 4 18 4Z" fill="#2B4C7E" stroke="#C5A059" stroke-width="1.5"/>
+                  <circle cx="18" cy="14.5" r="4.2" fill="#FFFDF9"/>
+                  <circle cx="18" cy="14.5" r="2.2" fill="#C5A059"/>
+                </svg>
+              </div>
+              <div class="event-text-col location-text-col">
+                <span class="event-venue-name" id="eventVenueLabel">Lugar del Evento</span>
+                <address class="event-address-text" id="eventAddressText"></address>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="btn-location-map" id="btnLocationMap">
+                  <span class="btn-map-text">VER UBICACIÓN</span>
+                  <svg class="btn-map-arrow" viewBox="0 0 16 16" width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ==========================================================================
+               Sección de Cuenta Regresiva (Countdown Timer)
+               ========================================================================== -->
+          <div class="countdown-section" aria-label="Cronómetro de cuenta regresiva">
+            <h2 class="countdown-heading" id="countdownHeading">— FALTAN —</h2>
+            <div class="countdown-boxes-wrap">
+              <!-- Días -->
+              <div class="countdown-box">
+                <span class="countdown-num" id="cdDays">00</span>
+                <span class="countdown-unit">DÍAS</span>
+              </div>
+
+              <span class="countdown-colon" aria-hidden="true">:</span>
+
+              <!-- Horas -->
+              <div class="countdown-box">
+                <span class="countdown-num" id="cdHours">00</span>
+                <span class="countdown-unit">HORAS</span>
+              </div>
+
+              <span class="countdown-colon" aria-hidden="true">:</span>
+
+              <!-- Minutos -->
+              <div class="countdown-box">
+                <span class="countdown-num" id="cdMinutes">00</span>
+                <span class="countdown-unit">MINUTOS</span>
+              </div>
+
+              <span class="countdown-colon" aria-hidden="true">:</span>
+
+              <!-- Segundos -->
+              <div class="countdown-box">
+                <span class="countdown-num" id="cdSeconds">00</span>
+                <span class="countdown-unit">SEGUNDOS</span>
+              </div>
+            </div>
+
+            <!-- Mensaje cuando llega a cero -->
+            <p class="countdown-finished-msg" id="cdFinishedMsg" style="display: none;"></p>
+          </div>
+
+        </section>
+
+        <!-- ==========================================================================
+             7. Sección de Confirmación de Asistencia (RSVP WhatsApp)
+             ========================================================================== -->
+        <section class="rsvp-section" aria-label="Confirmación de Asistencia">
+          <div class="rsvp-card">
+            <!-- Detalle ornamental superior -->
+            <div class="rsvp-ornament-top" aria-hidden="true">
+              <span class="rsvp-ornament-line"></span>
+              <span class="rsvp-ornament-icon">✦</span>
+              <span class="rsvp-ornament-line"></span>
+            </div>
+
+            <h2 class="rsvp-title" id="rsvpTitle"></h2>
+            <p class="rsvp-subtitle" id="rsvpSubtitle"></p>
+
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn-rsvp-whatsapp" id="btnRsvpWhatsapp">
+              <svg class="whatsapp-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.11 7.58C8.94 7.58 8.68 7.64 8.45 7.89C8.22 8.14 7.58 8.74 7.58 9.97C7.58 11.2 8.47 12.38 8.6 12.55C8.73 12.72 10.35 15.23 12.84 16.3C13.43 16.56 13.9 16.71 14.25 16.83C14.86 17.02 15.41 16.99 15.85 16.93C16.34 16.86 17.35 16.32 17.56 15.73C17.77 15.14 17.77 14.63 17.71 14.53C17.65 14.43 17.48 14.37 17.23 14.24C16.97 14.11 15.72 13.5 15.49 13.41C15.26 13.33 15.09 13.28 14.92 13.54C14.75 13.79 14.27 14.37 14.13 14.53C13.98 14.7 13.84 14.72 13.58 14.59C13.33 14.47 12.49 14.19 11.5 13.31C10.73 12.62 10.21 11.77 10.06 11.51C9.91 11.26 10.04 11.12 10.17 10.99C10.28 10.88 10.42 10.7 10.55 10.55C10.68 10.4 10.72 10.29 10.81 10.12C10.89 9.95 10.85 9.8 10.79 9.68C10.72 9.55 10.21 8.3 10 7.79C9.79 7.29 9.58 7.36 9.42 7.35C9.27 7.35 9.11 7.35 9.11 7.58Z"/>
+              </svg>
+              <span class="btn-rsvp-text" id="rsvpBtnText"></span>
+            </a>
+          </div>
+        </section>
+
+        <!-- ==========================================================================
+             8. Escena Inferior Safari: Árboles de Fondo, Cebra Bebé y Cartela de Cierre
+             ========================================================================== -->
+        <section class="bottom-safari-scene zebra-scene-container" id="bottomSafariScene" aria-label="Escena final safari y agradecimiento">
+
+          <!-- Árboles Safari: Fuera de la caja de la cebra y AL FONDO DE TODO (z-index: 1) -->
+          <div class="safari-tree safari-tree-left zebra-tree zebra-tree-left" id="safariTreeLeft" aria-hidden="true">
+            <img src="assets/diseno_arboles_izquierdo.png?v=3" alt="" class="safari-tree-img zebra-tree-img" />
+          </div>
+          <div class="safari-tree safari-tree-right zebra-tree zebra-tree-right" id="safariTreeRight" aria-hidden="true">
+            <img src="assets/diseno_arboles_derecho.png?v=3" alt="" class="safari-tree-img zebra-tree-img" />
+          </div>
+
+          <!-- Caja de la Cebra Bebé (Totalmente aislada de los árboles, Capa z-index: 2) -->
+          <div class="zebra-box" id="zebraBox">
+            <div class="zebra-video-wrap">
+              <video class="hidden-source-video zebra-video" id="zebraVideo" src="assets/diseno_cebra_bebe.mp4" autoplay loop muted playsinline webkit-playsinline></video>
+              <canvas class="zebra-canvas" id="zebraCanvas" width="480" height="480"></canvas>
+            </div>
+          </div>
+
+          <!-- Cartel / Cartela Final de Agradecimiento (Capa superior z-index: 3) -->
+          <div class="thanks-cartouche" aria-label="Mensaje de agradecimiento">
+            <!-- Corona dorada imperial en la parte superior del marco -->
+            <div class="cartouche-crown-wrap" aria-hidden="true">
+              <img src="assets/corona.png" alt="Corona real" class="cartouche-crown-img" />
+            </div>
+
+            <!-- Línea Superior Serif sobria en azul porcelana -->
+            <p class="thanks-top-text" id="thanksTopText"></p>
+
+            <!-- Línea Destacada caligráfica clásica fluida -->
+            <p class="thanks-highlight-text" id="thanksHighlightText"></p>
+
+            <!-- Remate Inferior: Corazón azul porcelana con líneas doradas -->
+            <div class="thanks-bottom-ornament" aria-hidden="true">
+              <span class="thanks-ornament-line"></span>
+              <span class="thanks-bottom-symbol">♥</span>
+              <span class="thanks-ornament-line"></span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Script de Configuración Centralizada -->
+  <script src="js/config.js?v=9"></script>
+  <!-- Script de Interacción, Keying de Canvas y Audio -->
+  <script src="js/invitacion.js?v=11"></script>
+</body>
+</html>

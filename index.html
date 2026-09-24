@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Invitación Especial | Algo maravilloso está por llegar</title>
+  
+  <!-- Meta SEO y Redes Sociales -->
+  <meta name="description" content="Invitación digital interactiva elegante para baby shower / revelación. Toca el sobre para descubrir la dulce espera.">
+  <meta name="theme-color" content="#FAF8F5">
+
+  <!-- Google Fonts: Cormorant Garamond, Great Vibes, Alex Brush & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/styles.css?v=40">
+</head>
+<body>
+  <!-- Contenedor exterior (Fondo ambiental para escritorio) -->
+  <main class="page-wrapper">
+    <!-- Simulación de dispositivo móvil (Mobile Frame) -->
+    <div class="mobile-device" id="mobileDevice">
+      
+      <!-- Lienzo principal de la invitación -->
+      <section class="card-screen" id="coverScreen" aria-label="Portada de invitación">
+        
+        <!-- Elementos decorativos superiores de fondo -->
+        <div class="decor-layer">
+          <!-- Globos azules (Superior Izquierda) -->
+          <div class="decor-balloons" id="decorBalloons">
+            <img src="assets/globos.png?v=3" alt="Globos decorativos celestes y dorados" class="floating-balloons" />
+          </div>
+
+          <!-- Palmeras estilo acuarela Toile de Jouy animadas (Superior Derecha) -->
+          <div class="decor-palms" id="decorPalms">
+            <video 
+              class="palm-trees-video" 
+              id="palmasVideo" 
+              src="assets/palmas_move.mp4" 
+              autoplay 
+              loop 
+              muted 
+              playsinline 
+              webkit-playsinline 
+              preload="auto" 
+              aria-label="Palmeras animadas estilo Toile de Jouy">
+            </video>
+            <canvas class="palm-trees-canvas" id="palmasCanvas" width="300" height="300" aria-hidden="true"></canvas>
+          </div>
+        </div>
+
+        <!-- Encabezado poético central -->
+        <header class="card-header" id="cardHeader">
+          <!-- Corona dorada con detalle de corazón -->
+          <div class="crown-container">
+            <img src="assets/corona.png" alt="Corona real dorada" class="gold-crown" />
+          </div>
+
+          <!-- Texto poético -->
+          <div class="poetic-text">
+            <p class="verse">Algo maravilloso</p>
+            <p class="verse">está por llegar.</p>
+            <p class="verse">Descubre la dulce</p>
+            <p class="verse highlight">espera...</p>
+          </div>
+
+          <!-- Divisor decorativo inferior con corazón dorado -->
+          <div class="heart-divider" aria-hidden="true">
+            <span class="divider-line"></span>
+            <svg class="gold-heart-icon" viewBox="0 0 24 24" width="14" height="14" fill="#C5A059">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span class="divider-line"></span>
+          </div>
+        </header>
+
+        <!-- Sección central interactiva: Sobre multicapa y Carta interactiva -->
+        <div class="envelope-stage" id="envelopeStage">
+          <div class="envelope-container" id="envelopeContainer" role="button" tabindex="0" aria-label="Abrir sobre de invitación">
+            
+            <!-- Capa 1 (Fondo trasero): z-index: 1 -->
+            <img src="assets/capa_1.png" class="envelope-layer envelope-back" alt="Fondo trasero del sobre" />
+
+            <!-- Capa Solapa Superior Abierta: z-index: 2 -->
+            <img src="assets/capa_3.png" class="envelope-layer envelope-flap-open" id="flapOpen" alt="Solapa abierta del sobre" />
+
+            <!-- Ranura intermedia con Tarjeta / Carta (Captura Estática de Cabecera): z-index: 3 -->
+            <div class="envelope-card-slot" id="cardSlot">
+              <div class="invitation-card" id="invitationCard" aria-label="Vista previa de la invitación">
+                <img src="assets/preview_invitacion.png?v=3" alt="Invitación Liam Alexander" class="card-preview-image" id="cardPreviewImage" />
+              </div>
+            </div>
+
+            <!-- Capa 2 (Bolsillo Frontal): z-index: 4 -->
+            <img src="assets/capa_2.png" class="envelope-layer envelope-front" alt="Bolsillo frontal del sobre" />
+
+            <!-- Capa Solapa Cerrada: z-index: 6 -->
+            <img src="assets/capa_3.png" class="envelope-layer envelope-flap-closed" id="flapClosed" alt="Solapa cerrada del sobre" />
+
+            <!-- Lazo azul bajo el sello de cera: z-index: 10 -->
+            <div class="seal-ribbon" id="sealRibbon" aria-hidden="true"></div>
+
+            <!-- Sello de cera dorado central interactivo: z-index: 11 -->
+            <div class="wax-seal" id="waxSeal" title="Toca para abrir">
+              <img src="assets/sello.png" alt="Sello de cera dorado con motivo de pajarito" class="seal-img" />
+              <div class="seal-shine" aria-hidden="true"></div>
+              <div class="seal-pulse-ring" aria-hidden="true"></div>
+            </div>
+
+            <!-- Cachorro leopardo / tigre bebé animado en video y renderizado opaco: z-index: 20 -->
+            <div class="tiger-cub-container" id="tigerCubContainer">
+              <video 
+                class="tiger-cub-video" 
+                id="tigerCubVideo" 
+                src="assets/tigre_bebe.mp4" 
+                autoplay 
+                loop 
+                muted 
+                playsinline
+                webkit-playsinline
+                preload="auto"
+                aria-label="Cachorro de tigre bebé animado con flores celestes">
+              </video>
+              <canvas class="tiger-cub-canvas" id="tigerCubCanvas" width="800" height="400" aria-hidden="true"></canvas>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Llamada a la acción inferior (CTA en alta resolución con corazón y espigas doradas) -->
+        <footer class="card-footer" id="cardFooter">
+          <div class="tap-invite-container" id="tapInviteBtn" role="button" tabindex="0" aria-label="Toca el sobre">
+            <span class="tap-invite-text">Toca el sobre</span>
+            <svg class="tap-invite-decor" viewBox="0 0 180 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="goldStem" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#C5A059" stop-opacity="0.3"/>
+                  <stop offset="25%" stop-color="#E2C98A"/>
+                  <stop offset="50%" stop-color="#C5A059"/>
+                  <stop offset="75%" stop-color="#E2C98A"/>
+                  <stop offset="100%" stop-color="#C5A059" stop-opacity="0.3"/>
+                </linearGradient>
+                <linearGradient id="goldHeart" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F2DD9E"/>
+                  <stop offset="40%" stop-color="#D4AF57"/>
+                  <stop offset="100%" stop-color="#A68032"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Corazón Central Dorado -->
+              <path d="M 90 14.5 C 87.6 12 81.5 7.8 81.5 4 C 81.5 1.6 83.4 0 85.8 0 C 87.5 0 89.1 1 90 2.2 C 90.9 1 92.5 0 94.2 0 C 96.6 0 98.5 1.6 98.5 4 C 98.5 7.8 92.4 12 90 14.5 Z" fill="url(#goldHeart)"/>
+
+              <!-- Tallo Izquierdo -->
+              <line x1="14" y1="7.5" x2="80" y2="7.5" stroke="url(#goldStem)" stroke-width="1.1" stroke-linecap="round"/>
+
+              <!-- Espigas Izquierdas -->
+              <path d="M 70 7.5 C 66 5 62 4.5 59 5.5 C 63 6.8 66 7.5 70 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 70 7.5 C 66 10 62 10.5 59 9.5 C 63 8.2 66 7.5 70 7.5 Z" fill="url(#goldHeart)"/>
+
+              <path d="M 56 7.5 C 52 5 48 4.5 45 5.5 C 49 6.8 52 7.5 56 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 56 7.5 C 52 10 48 10.5 45 9.5 C 49 8.2 52 7.5 56 7.5 Z" fill="url(#goldHeart)"/>
+
+              <path d="M 42 7.5 C 38 5 34 4.5 31 5.5 C 35 6.8 38 7.5 42 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 42 7.5 C 38 10 34 10.5 31 9.5 C 35 8.2 38 7.5 42 7.5 Z" fill="url(#goldHeart)"/>
+
+              <path d="M 28 7.5 C 24 5 20 4.5 17 5.5 C 21 6.8 24 7.5 28 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 28 7.5 C 24 10 20 10.5 17 9.5 C 21 8.2 24 7.5 28 7.5 Z" fill="url(#goldHeart)"/>
+
+              <!-- Hoja terminal izquierda -->
+              <path d="M 14 7.5 C 10 6.5 6 7 2 7.5 C 6 8 10 8.5 14 7.5 Z" fill="url(#goldHeart)"/>
+
+              <!-- Tallo Derecho -->
+              <line x1="100" y1="7.5" x2="166" y2="7.5" stroke="url(#goldStem)" stroke-width="1.1" stroke-linecap="round"/>
+
+              <!-- Espigas Derechas -->
+              <path d="M 110 7.5 C 114 5 118 4.5 121 5.5 C 117 6.8 114 7.5 110 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 110 7.5 C 114 10 118 10.5 121 9.5 C 117 8.2 114 7.5 110 7.5 Z" fill="url(#goldHeart)"/>
+
+              <path d="M 124 7.5 C 128 5 132 4.5 135 5.5 C 131 6.8 128 7.5 124 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 124 7.5 C 128 10 132 10.5 135 9.5 C 131 8.2 128 7.5 124 7.5 Z" fill="url(#goldHeart)"/>
+
+              <path d="M 138 7.5 C 142 5 146 4.5 149 5.5 C 145 6.8 142 7.5 138 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 138 7.5 C 142 10 146 10.5 149 9.5 C 145 8.2 142 7.5 138 7.5 Z" fill="url(#goldHeart)"/>
+
+              <path d="M 152 7.5 C 156 5 160 4.5 163 5.5 C 159 6.8 156 7.5 152 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 152 7.5 C 156 10 160 10.5 163 9.5 C 159 8.2 156 7.5 152 7.5 Z" fill="url(#goldHeart)"/>
+
+              <!-- Hoja terminal derecha -->
+              <path d="M 166 7.5 C 170 6.5 174 7 178 7.5 C 174 8 170 8.5 166 7.5 Z" fill="url(#goldHeart)"/>
+            </svg>
+          </div>
+        </footer>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Capa de expansión a pantalla completa (Takeover) -->
+  <div class="card-takeover" id="cardTakeover" aria-hidden="true"></div>
+
+  <!-- Configuración Centralizada y Script Principal -->
+  <script src="js/config.js?v=10"></script>
+  <script src="js/main.js?v=12"></script>
+</body>
+</html>
