@@ -7,7 +7,7 @@
   
   <!-- Meta SEO y Redes Sociales -->
   <meta name="description" content="Invitación digital interactiva elegante para baby shower / revelación. Toca el sobre para descubrir la dulce espera.">
-  <meta name="theme-color" content="#FAF8F5">
+  <meta name="theme-color" content="#FFFFFF">
 
   <!-- Google Fonts: Cormorant Garamond, Great Vibes, Alex Brush & Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="css/styles.css?v=40">
+  <link rel="stylesheet" href="css/styles.css?v=54">
 </head>
 <body>
   <!-- Contenedor exterior (Fondo ambiental para escritorio) -->
@@ -47,7 +47,6 @@
               preload="auto" 
               aria-label="Palmeras animadas estilo Toile de Jouy">
             </video>
-            <canvas class="palm-trees-canvas" id="palmasCanvas" width="300" height="300" aria-hidden="true"></canvas>
           </div>
         </div>
 
@@ -109,21 +108,13 @@
               <div class="seal-pulse-ring" aria-hidden="true"></div>
             </div>
 
-            <!-- Cachorro leopardo / tigre bebé animado en video y renderizado opaco: z-index: 20 -->
-            <div class="tiger-cub-container" id="tigerCubContainer">
-              <video 
-                class="tiger-cub-video" 
-                id="tigerCubVideo" 
-                src="assets/tigre_bebe.mp4" 
-                autoplay 
-                loop 
-                muted 
-                playsinline
-                webkit-playsinline
-                preload="auto"
-                aria-label="Cachorro de tigre bebé animado con flores celestes">
-              </video>
-              <canvas class="tiger-cub-canvas" id="tigerCubCanvas" width="800" height="400" aria-hidden="true"></canvas>
+            <!-- Cachorros de tigres bebés juntos animados en GIF nativo: z-index: 30 -->
+            <div class="tiger-cubs-container" id="tigerCubsContainer">
+              <img 
+                src="assets/tigres_bebes.gif" 
+                alt="Cachorros de tigres bebés jugando juntos" 
+                class="tiger-cubs-img" 
+                id="tigerCubsImg" />
             </div>
 
           </div>
@@ -203,6 +194,6 @@
 
   <!-- Configuración Centralizada y Script Principal -->
   <script src="js/config.js?v=10"></script>
-  <script src="js/main.js?v=12"></script>
+  <script src="js/main.js?v=15"></script>
 </body>
 </html>

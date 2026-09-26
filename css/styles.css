@@ -5,10 +5,10 @@
 
 /* --- Reset y Variables de Diseño --- */
 :root {
-  --color-bg-ambient: #EDEAE5;
+  --color-bg-ambient: #FFFFFF;
   --color-card-bg-top: #FFFFFF;
-  --color-card-bg-mid: #FBF9F5;
-  --color-card-bg-bot: #F4EFE6;
+  --color-card-bg-mid: #FFFFFF;
+  --color-card-bg-bot: #FFFFFF;
 
   --color-text-primary: #554D45;
   --color-text-secondary: #7A7268;
@@ -19,7 +19,7 @@
   --font-serif: 'Cormorant Garamond', Garamond, Georgia, serif;
   --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  --shadow-envelope: 0 10px 18px rgba(15, 25, 45, 0.50), 0 4px 8px rgba(15, 25, 45, 0.30);
+  --shadow-envelope: 0 3px 5px rgba(15, 25, 45, 0.26);
   --shadow-seal: 0 6px 16px rgba(120, 85, 20, 0.35);
   --shadow-device: 0 28px 70px -15px rgba(50, 45, 40, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.07);
 }
@@ -54,7 +54,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: radial-gradient(circle at 50% 30%, #F5F3EF 0%, #E6E1D8 100%);
+  background: #FFFFFF;
 }
 
 /* Marco simulador de smartphone en desktop / Fullscreen en móviles */
@@ -64,7 +64,7 @@ body {
   height: 100%;
   max-height: min(875px, calc(100dvh - 32px));
   aspect-ratio: 9 / 18.5;
-  background: linear-gradient(180deg, var(--color-card-bg-top) 0%, var(--color-card-bg-mid) 40%, var(--color-card-bg-bot) 100%);
+  background: #FFFFFF;
   border-radius: 40px;
   box-shadow: var(--shadow-device);
   position: relative;
@@ -80,6 +80,7 @@ body {
 .card-screen {
   width: 100%;
   height: 100%;
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -147,17 +148,13 @@ body {
 }
 
 .palm-trees-video {
-  display: none;
-}
-
-.palm-trees-canvas {
   width: 100%;
   height: 100%;
   object-fit: fill;
   display: block;
   pointer-events: none;
   opacity: 0.95;
-  image-rendering: auto;
+  transform: translateZ(0);
 }
 
 /* ==========================================================================
@@ -270,9 +267,7 @@ body {
 /* Capa 1 (Fondo trasero): z-index: 1 */
 .envelope-back {
   z-index: 1;
-  filter:
-    drop-shadow(0 10px 16px rgba(15, 25, 45, 0.45))
-    drop-shadow(0 4px 8px rgba(15, 25, 45, 0.30));
+  filter: drop-shadow(0 3px 5px rgba(15, 25, 45, 0.30));
 }
 
 /* Capa Solapa Superior Abierta: z-index: 2 (Oculta en estado inicial) */
@@ -340,7 +335,7 @@ body {
    ========================================================================== */
 .envelope-front {
   z-index: 4;
-  filter: drop-shadow(0 4px 10px rgba(15, 25, 45, 0.15));
+  filter: drop-shadow(0 2px 5px rgba(15, 25, 45, 0.12));
 }
 
 /* ==========================================================================
@@ -410,9 +405,20 @@ body {
 }
 
 @keyframes sealPulse {
-  0% { transform: scale(0.9); opacity: 0.6; }
-  60% { transform: scale(1.28); opacity: 0; }
-  100% { transform: scale(1.35); opacity: 0; }
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+
+  60% {
+    transform: scale(1.28);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
 }
 
 .seal-shine {
@@ -427,17 +433,18 @@ body {
 }
 
 /* ==========================================================================
-   Cachorro Leopardo / Tigre Bebé (Centrado e Imponente: z-index: 20)
+   Cachorros Tigres Bebés (Video único: compacto, 55% del sobre y al frente)
    ========================================================================== */
+.tiger-cubs-container,
 .tiger-cub-container {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(-68.5% - 40px);
-  width: 156%;
-  max-width: 600px;
+  transform: translateX(-50%) translateZ(30px);
+  bottom: -110px;
+  width: calc(55% + 150px);
+  max-width: 370px;
   height: auto;
-  z-index: 20;
+  z-index: 30;
   pointer-events: none;
   display: flex;
   justify-content: center;
@@ -445,22 +452,16 @@ body {
   transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
 }
 
+.tiger-cubs-img,
+.tiger-cubs-video,
 .tiger-cub-video {
-  display: none;
   width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.tiger-cub-canvas {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   display: block;
   object-fit: contain;
-  filter:
-    drop-shadow(0 6px 12px rgba(18, 30, 50, 0.22)) brightness(86%) contrast(116%) saturate(112%);
-  will-change: transform;
   transform: translateZ(0);
+  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -473,7 +474,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 0 0 clamp(8px, 1.5cqh, 12px) 0;
-  margin-top: clamp(80px, 15.5cqh, 130px);
+  margin-top: clamp(115px, calc(15cqh + 20px), 140px);
   margin-bottom: auto;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
@@ -522,10 +523,13 @@ body {
 }
 
 @keyframes gentlePulseCta {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
     opacity: 0.95;
   }
+
   50% {
     transform: translateY(-4px);
     opacity: 1;
@@ -587,7 +591,7 @@ body {
 /* Fase 4: Capa de Expansión a Pantalla Completa (Takeover: z-index: 99999) */
 .card-takeover {
   position: fixed;
-  background-color: #FFFDF9;
+  background-color: #FFFFFF;
   z-index: 99999;
   pointer-events: none;
   display: none;
@@ -635,7 +639,7 @@ body {
 @media (max-width: 480px) {
   .page-wrapper {
     padding: 0;
-    background: transparent;
+    background: #FFFFFF;
     height: 100dvh;
     min-height: 100dvh;
     overflow: hidden;
@@ -654,15 +658,13 @@ body {
   }
 
   .card-screen {
-    padding: max(clamp(14px, 2.8cqh, 24px), env(safe-area-inset-top, 0px) + 12px)
-             clamp(12px, 4cqw, 20px)
-             max(clamp(12px, 2.2cqh, 18px), env(safe-area-inset-bottom, 0px) + 10px)
-             clamp(12px, 4cqw, 20px);
+    padding: max(clamp(14px, 2.8cqh, 24px), env(safe-area-inset-top, 0px) + 12px) clamp(12px, 4cqw, 20px) max(clamp(12px, 2.2cqh, 18px), env(safe-area-inset-bottom, 0px) + 10px) clamp(12px, 4cqw, 20px);
   }
 }
 
 /* Dispositivos con pantallas pequeñas (e.g. iPhone SE, 360x640, o navegadores con barras activas) */
-@media (max-height: 700px), (max-width: 360px) {
+@media (max-height: 700px),
+(max-width: 360px) {
   .card-screen {
     padding-top: max(12px, env(safe-area-inset-top, 0px) + 8px);
     padding-bottom: max(10px, env(safe-area-inset-bottom, 0px) + 8px);
@@ -705,7 +707,7 @@ body {
   }
 
   .card-footer {
-    margin-top: 85px;
+    margin-top: 105px;
     padding-bottom: 6px;
   }
 
@@ -745,7 +747,7 @@ body {
   }
 
   .card-footer {
-    margin-top: 65px;
+    margin-top: 85px;
     padding-bottom: 4px;
   }
 
@@ -766,7 +768,8 @@ body {
   position: absolute;
   bottom: clamp(10px, 2.5cqw, 24px);
   pointer-events: none;
-  z-index: 1; /* Al fondo de todo */
+  z-index: 1;
+  /* Al fondo de todo */
   filter: drop-shadow(0 6px 14px rgba(43, 76, 126, 0.08));
   overflow: visible;
 }

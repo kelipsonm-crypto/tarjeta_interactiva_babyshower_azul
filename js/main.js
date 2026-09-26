@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const envelopeStage = document.getElementById('envelopeStage');
   const tapInviteBtn = document.getElementById('tapInviteBtn');
   const coverScreen = document.getElementById('coverScreen');
-  const tigerVideo = document.querySelector('.tiger-cub-video');
+  const tigerEl = document.getElementById('tigerCubsImg') || document.getElementById('tigerCubsVideo');
   const btnRsvp = document.getElementById('btnRsvp');
   const btnMap = document.getElementById('btnMap');
 
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         takeoverEl.style.width = `${rect.width}px`;
         takeoverEl.style.height = `${rect.height}px`;
         takeoverEl.style.borderRadius = '12px';
-        takeoverEl.style.backgroundColor = '#FFFDF9';
+        takeoverEl.style.backgroundColor = '#FFFFFF';
         takeoverEl.style.boxShadow = '0 24px 50px rgba(35, 25, 15, 0.28)';
         takeoverEl.style.zIndex = '99999';
 
@@ -195,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const ensureVideoPlayback = () => {
     const videos = [
-      document.getElementById('tigerCubVideo'),
       document.getElementById('palmasVideo')
     ];
     videos.forEach(v => {
@@ -212,165 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  /**
-   * Renderiza el video del cachorro en un Canvas en tiempo real,
-   * extrayendo el fondo blanco para que el tigre sea 100% SÓLIDO Y OPACO.
-   * Al ser opaco, se superpone con nitidez sin que las sombras ni los patrones
-   * del sobre se trasluzcan o lo manchen.
-   */
-  const setupTigerCanvasKeying = () => {
-    const video = document.getElementById('tigerCubVideo');
-    const canvas = document.getElementById('tigerCubCanvas');
-    if (!video || !canvas) return;
-
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    if (!ctx) return;
-
-    let isRunning = false;
-
-    const render = () => {
-      // Durante el pulso de apertura del sello, liberamos el hilo para 60fps puros sin lag
-      if (isOpening) {
-        if ('requestVideoFrameCallback' in video) {
-          video.requestVideoFrameCallback(render);
-        } else {
-          requestAnimationFrame(render);
-        }
-        return;
-      }
-
-      if (video.readyState >= 2 && !video.paused) {
-        const w = canvas.width;
-        const h = canvas.height;
-        ctx.drawImage(video, 0, 0, w, h);
-        const imgData = ctx.getImageData(0, 0, w, h);
-        const buf32 = new Uint32Array(imgData.data.buffer);
-        const len = buf32.length;
-
-        for (let i = 0; i < len; i++) {
-          const pixel = buf32[i];
-          const r = pixel & 0xFF;
-          const g = (pixel >> 8) & 0xFF;
-          const b = (pixel >> 16) & 0xFF;
-
-          // Fondo blanco de estudio (> 238)
-          if (r > 238 && g > 238 && b > 238) {
-            buf32[i] = 0; // Transparente total
-          } else if (r > 218 && g > 218 && b > 218) {
-            // Suavizado anti-aliasing en bordes del pelaje
-            const avg = (r + g + b) / 3;
-            const a = Math.min(255, Math.max(0, Math.round((255 - avg) * 12.5)));
-            buf32[i] = (pixel & 0x00FFFFFF) | (a << 24);
-          }
-        }
-        ctx.putImageData(imgData, 0, 0);
-      }
-
-      if ('requestVideoFrameCallback' in video) {
-        video.requestVideoFrameCallback(render);
-      } else {
-        requestAnimationFrame(render);
-      }
-    };
-
-    video.addEventListener('play', () => {
-      if (!isRunning) {
-        isRunning = true;
-        if ('requestVideoFrameCallback' in video) {
-          video.requestVideoFrameCallback(render);
-        } else {
-          requestAnimationFrame(render);
-        }
-      }
-    });
-
-    video.addEventListener('loadeddata', () => {
-      render();
-    });
-
-    if (!video.paused) {
-      isRunning = true;
-      render();
-    }
-  };
-
-  /**
-   * Renderiza el video de las palmeras en un Canvas en tiempo real,
-   * eliminando el fondo blanco para que las palmas se integren 100% transparentes
-   * sobre el lienzo sin ningún marco ni recuadro blanco.
-   */
-  const setupPalmasCanvasKeying = () => {
-    const video = document.getElementById('palmasVideo');
-    const canvas = document.getElementById('palmasCanvas');
-    if (!video || !canvas) return;
-
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    if (!ctx) return;
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-
-    let isRunning = false;
-
-    const render = () => {
-      if (video.readyState >= 2 && !video.paused) {
-        const w = canvas.width;
-        const h = canvas.height;
-        ctx.drawImage(video, 0, 0, w, h);
-        const imgData = ctx.getImageData(0, 0, w, h);
-        const buf32 = new Uint32Array(imgData.data.buffer);
-        const len = buf32.length;
-
-        for (let i = 0; i < len; i++) {
-          const pixel = buf32[i];
-          const r = pixel & 0xFF;
-          const g = (pixel >> 8) & 0xFF;
-          const b = (pixel >> 16) & 0xFF;
-
-          // Fondo blanco (> 235)
-          if (r > 235 && g > 235 && b > 235) {
-            buf32[i] = 0; // Transparente total
-          } else if (r > 210 && g > 210 && b > 210) {
-            // Suavizado en bordes de las hojas
-            const avg = (r + g + b) / 3;
-            const a = Math.min(255, Math.max(0, Math.round((255 - avg) * 10)));
-            buf32[i] = (pixel & 0x00FFFFFF) | (a << 24);
-          }
-        }
-        ctx.putImageData(imgData, 0, 0);
-      }
-
-      if ('requestVideoFrameCallback' in video) {
-        video.requestVideoFrameCallback(render);
-      } else {
-        requestAnimationFrame(render);
-      }
-    };
-
-    video.addEventListener('play', () => {
-      if (!isRunning) {
-        isRunning = true;
-        if ('requestVideoFrameCallback' in video) {
-          video.requestVideoFrameCallback(render);
-        } else {
-          requestAnimationFrame(render);
-        }
-      }
-    });
-
-    video.addEventListener('loadeddata', () => {
-      render();
-    });
-
-    if (!video.paused) {
-      isRunning = true;
-      render();
-    }
-  };
-
-  // Inicializar reproducción y procesamiento de video
+  // Inicializar reproducción fluida nativa por GPU de los videos
   ensureVideoPlayback();
-  setupTigerCanvasKeying();
-  setupPalmasCanvasKeying();
 
   // Auto-apertura si se pasa el parámetro ?open=1 en la URL (para previsualizaciones o pruebas)
   const urlParams = new URLSearchParams(window.location.search);
