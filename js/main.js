@@ -211,6 +211,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  /**
+   * Sincroniza dinámicamente el contenido de la carta interior con la configuración actual
+   */
+  const syncLiveInvitationCard = (cfg) => {
+    if (!cfg || !cfg.evento) return;
+    const ev = cfg.evento;
+
+    const subEl = document.getElementById('cardLiveSubtitle');
+    const name1El = document.getElementById('cardLiveName1');
+    const name2El = document.getElementById('cardLiveName2');
+    const dedEl = document.getElementById('cardLiveDedication');
+
+    if (subEl && ev.subtitulo_superior) {
+      subEl.textContent = ev.subtitulo_superior;
+    }
+    if (name1El && ev.nombre_linea_1) {
+      name1El.textContent = ev.nombre_linea_1;
+    }
+    if (name2El && ev.nombre_linea_2) {
+      name2El.textContent = ev.nombre_linea_2;
+    }
+    if (dedEl && ev.dedicatoria) {
+      const clean = ev.dedicatoria.replace(/^[«"“]/, '').replace(/[»"”]$/, '').trim();
+      dedEl.textContent = `«${clean}»`;
+    }
+  };
+
+  // Sincronización inicial inmediata
+  if (window.APP_CONFIG) {
+    syncLiveInvitationCard(window.APP_CONFIG);
+  }
+
+  // Sincronización en tiempo real desde config.json (sin caché)
+  fetch('config.json?t=' + Date.now())
+    .then(res => res.json())
+    .then(data => syncLiveInvitationCard(data))
+    .catch(() => {});
+
   // Inicializar reproducción fluida nativa por GPU de los videos
   ensureVideoPlayback();
 

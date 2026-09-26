@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Invitación Especial | Algo maravilloso está por llegar</title>
+  <title>Invitación Especial | Gran Revelación de Sexo</title>
   
   <!-- Meta SEO y Redes Sociales -->
-  <meta name="description" content="Invitación digital interactiva elegante para baby shower / revelación. Toca el sobre para descubrir la dulce espera.">
+  <meta name="description" content="Invitación digital interactiva para nuestra gran Revelación de Sexo. Toca el sobre para descubrir si será niño o niña.">
   <meta name="theme-color" content="#FFFFFF">
 
   <!-- Google Fonts: Cormorant Garamond, Great Vibes, Alex Brush & Montserrat -->
@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="css/styles.css?v=54">
+  <link rel="stylesheet" href="css/styles.css?v=60">
 </head>
 <body>
   <!-- Contenedor exterior (Fondo ambiental para escritorio) -->
@@ -28,9 +28,9 @@
         
         <!-- Elementos decorativos superiores de fondo -->
         <div class="decor-layer">
-          <!-- Globos azules (Superior Izquierda) -->
+          <!-- Globos decorativos (Superior Izquierda) -->
           <div class="decor-balloons" id="decorBalloons">
-            <img src="assets/globos.png?v=3" alt="Globos decorativos celestes y dorados" class="floating-balloons" />
+            <img src="assets/globos.png?v=59" alt="Globos decorativos rosados y dorados" class="floating-balloons" />
           </div>
 
           <!-- Palmeras estilo acuarela Toile de Jouy animadas (Superior Derecha) -->
@@ -59,10 +59,10 @@
 
           <!-- Texto poético -->
           <div class="poetic-text">
-            <p class="verse">Algo maravilloso</p>
-            <p class="verse">está por llegar.</p>
-            <p class="verse">Descubre la dulce</p>
-            <p class="verse highlight">espera...</p>
+            <p class="verse">Un dulce secreto</p>
+            <p class="verse">está por revelarse...</p>
+            <p class="verse">¿Será niño o niña?</p>
+            <p class="verse highlight">¡Descúbrelo aquí!</p>
           </div>
 
           <!-- Divisor decorativo inferior con corazón dorado -->
@@ -80,25 +80,72 @@
           <div class="envelope-container" id="envelopeContainer" role="button" tabindex="0" aria-label="Abrir sobre de invitación">
             
             <!-- Capa 1 (Fondo trasero): z-index: 1 -->
-            <img src="assets/capa_1.png" class="envelope-layer envelope-back" alt="Fondo trasero del sobre" />
+            <img src="assets/capa_1.png?v=60" class="envelope-layer envelope-back" alt="Fondo trasero del sobre" />
 
             <!-- Capa Solapa Superior Abierta: z-index: 2 -->
-            <img src="assets/capa_3.png" class="envelope-layer envelope-flap-open" id="flapOpen" alt="Solapa abierta del sobre" />
+            <img src="assets/capa_3.png?v=58" class="envelope-layer envelope-flap-open" id="flapOpen" alt="Solapa abierta del sobre" />
 
-            <!-- Ranura intermedia con Tarjeta / Carta (Captura Estática de Cabecera): z-index: 3 -->
+            <!-- Ranura intermedia con Tarjeta / Carta (Renderizado Dinámico en Vivo): z-index: 3 -->
             <div class="envelope-card-slot" id="cardSlot">
               <div class="invitation-card" id="invitationCard" aria-label="Vista previa de la invitación">
-                <img src="assets/preview_invitacion.png?v=3" alt="Invitación Liam Alexander" class="card-preview-image" id="cardPreviewImage" />
+                
+                <div class="card-live-preview">
+                  <!-- Arreglos Florales Superiores -->
+                  <div class="card-live-floral card-live-floral-left" aria-hidden="true">
+                    <img src="assets/diseno_floral_grande_izquierdo.png" alt="" class="card-live-floral-img" />
+                  </div>
+                  <div class="card-live-floral card-live-floral-right" aria-hidden="true">
+                    <img src="assets/diseno_floral_grande_derecho.png" alt="" class="card-live-floral-img" />
+                  </div>
+
+                  <!-- Contenido de la carta -->
+                  <div class="card-live-content">
+                    <!-- Reproductor simulado -->
+                    <div class="card-live-player" aria-hidden="true">
+                      <img src="assets/diseno_reproducir.png?v=3" alt="" class="card-live-disc" />
+                      <img src="assets/boton_reproducir.png" alt="" class="card-live-btn" />
+                    </div>
+
+                    <!-- Subtítulo Superior -->
+                    <div class="card-live-intro">
+                      <p class="card-live-subtitle" id="cardLiveSubtitle">GRAN REVELACIÓN DE SEXO</p>
+                    </div>
+
+                    <!-- Corona y Nombres -->
+                    <div class="card-live-hero">
+                      <img src="assets/corona.png" alt="" class="card-live-crown" />
+                      <h2 class="card-live-title" id="cardLiveTitle">
+                        <span class="card-live-name-1" id="cardLiveName1">¿Niño o</span>
+                        <span class="card-live-name-2" id="cardLiveName2">Niña?</span>
+                      </h2>
+                    </div>
+
+                    <!-- Dedicatoria -->
+                    <div class="card-live-dedication-wrap">
+                      <p class="card-live-dedication" id="cardLiveDedication">«El amor se multiplica y la emoción crece cada día más. Acompáñanos a descubrir el secreto más esperado: ¿será un niño o una niña? ¡Tu presencia hará este momento inolvidable!»</p>
+                    </div>
+
+                    <!-- Divisor dorado -->
+                    <div class="card-live-divider" aria-hidden="true">
+                      <span class="card-divider-line"></span>
+                      <span class="card-divider-symbol">◆</span>
+                      <span class="card-divider-heart">♥</span>
+                      <span class="card-divider-symbol">◆</span>
+                      <span class="card-divider-line"></span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
             <!-- Capa 2 (Bolsillo Frontal): z-index: 4 -->
-            <img src="assets/capa_2.png" class="envelope-layer envelope-front" alt="Bolsillo frontal del sobre" />
+            <img src="assets/capa_2.png?v=58" class="envelope-layer envelope-front" alt="Bolsillo frontal del sobre" />
 
             <!-- Capa Solapa Cerrada: z-index: 6 -->
-            <img src="assets/capa_3.png" class="envelope-layer envelope-flap-closed" id="flapClosed" alt="Solapa cerrada del sobre" />
+            <img src="assets/capa_3.png?v=58" class="envelope-layer envelope-flap-closed" id="flapClosed" alt="Solapa cerrada del sobre" />
 
-            <!-- Lazo azul bajo el sello de cera: z-index: 10 -->
+            <!-- Lazo dorado bajo el sello de cera: z-index: 10 -->
             <div class="seal-ribbon" id="sealRibbon" aria-hidden="true"></div>
 
             <!-- Sello de cera dorado central interactivo: z-index: 11 -->
@@ -193,7 +240,7 @@
   <div class="card-takeover" id="cardTakeover" aria-hidden="true"></div>
 
   <!-- Configuración Centralizada y Script Principal -->
-  <script src="js/config.js?v=10"></script>
-  <script src="js/main.js?v=15"></script>
+  <script src="js/config.js?v=12"></script>
+  <script src="js/main.js?v=17"></script>
 </body>
 </html>

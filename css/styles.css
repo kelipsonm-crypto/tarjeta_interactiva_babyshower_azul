@@ -248,33 +248,42 @@ body {
 .envelope-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 397 / 222;
+  aspect-ratio: 1000 / 603;
   cursor: pointer;
   outline: none;
 }
 
-/* Capas de imagen 800x600 mapeadas matemáticamente al rectángulo 397x222 */
+/* Capas base del sobre multicapa */
 .envelope-layer {
   position: absolute;
-  width: calc(100% * 800 / 397);
-  height: calc(100% * 600 / 222);
-  left: calc(-179 / 397 * 100%);
-  top: calc(-222 / 222 * 100%);
   pointer-events: none;
   display: block;
 }
 
-/* Capa 1 (Fondo trasero): z-index: 1 */
+/* Capa 1 (Fondo trasero - capa_1.png 2390x1792 con rectángulo en X=[608, 1788], Y=[574, 1232]): z-index: 1 */
 .envelope-back {
   z-index: 1;
+  width: calc(100% * 2390 / 1180);
+  height: calc(100% * 1792 / 658);
+  left: calc(-608 / 1180 * 100%);
+  top: calc(-574 / 658 * 100%);
   filter: drop-shadow(0 3px 5px rgba(15, 25, 45, 0.30));
+}
+
+/* Capa Solapas Superior (capa_3.png 2390x1792 con base horizontal en Y=1164, X=[656, 1656]) */
+.envelope-flap-open,
+.envelope-flap-closed {
+  width: calc(100% * 2390 / 1000);
+  height: calc(100% * 1792 / 603);
+  left: calc(-656 / 1000 * 100%);
+  top: calc(-1164 / 603 * 100%);
+  transform-origin: 48.37% 64.96%;
 }
 
 /* Capa Solapa Superior Abierta: z-index: 2 (Oculta en estado inicial) */
 .envelope-flap-open {
   z-index: 2;
-  transform: translateX(calc(-22.5 / 800 * 100%)) rotateX(-90deg);
-  transform-origin: 50% 37.17%;
+  transform: rotateX(-90deg);
   opacity: 0;
   transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s, opacity 0.65s ease 0.15s;
 }
@@ -282,8 +291,7 @@ body {
 /* Capa Solapa Cerrada: z-index: 6 (Visible en estado inicial, plegada hacia abajo) */
 .envelope-flap-closed {
   z-index: 6;
-  transform-origin: 50% 37.17%;
-  transform: translateX(calc(-22.5 / 800 * 100%)) rotateX(180deg);
+  transform: rotateX(180deg);
   transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.55s ease;
 }
 
@@ -319,22 +327,190 @@ body {
   pointer-events: none;
 }
 
-.card-preview-image {
+/* Contenido interior de la carta previa (Renderizado Dinámico en Vivo) */
+.card-live-preview {
   width: 100%;
   height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: top center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 14px 14px 14px;
+  text-align: center;
+  background-color: #FFFDF9;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Florales de esquinas superiores */
+.card-live-floral {
+  position: absolute;
+  top: 0;
+  width: 25%;
+  max-width: 82px;
   pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
+  z-index: 1;
+}
+
+.card-live-floral-left {
+  left: 0;
+}
+
+.card-live-floral-right {
+  right: 0;
+}
+
+.card-live-floral-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Contenedor principal de contenidos */
+.card-live-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Disco de música ornamental */
+.card-live-player {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 6px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-live-disc {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.card-live-btn {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Subtítulo */
+.card-live-intro {
+  margin: 0 0 4px 0;
+}
+
+.card-live-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: #3A5F85;
+  margin: 0;
+}
+
+/* Corona dorada */
+.card-live-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 6px 0;
+}
+
+.card-live-crown {
+  width: 36px;
+  height: auto;
+  display: block;
+  margin: 0 auto -2px auto;
+  filter: drop-shadow(0 2px 4px rgba(184, 137, 57, 0.28));
+}
+
+/* Nombres / Título principal */
+.card-live-title {
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+  padding: 0;
+}
+
+.card-live-title span {
+  display: block;
+  font-size: 2.1rem;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #8E6D2F 0%, #C5A059 28%, #F3E5AB 48%, #D4AF37 68%, #8E6D2F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(142, 109, 47, 0.22));
+}
+
+.card-live-title .card-live-name-2 {
+  margin-top: -6px;
+}
+
+/* Dedicatoria */
+.card-live-dedication-wrap {
+  max-width: 90%;
+  margin: 0 auto 10px auto;
+}
+
+.card-live-dedication {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.42;
+  color: #1A2F4C;
+  margin: 0;
+  text-align: center;
+}
+
+/* Divisor ornamental */
+.card-live-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 60%;
+  max-width: 170px;
+  margin: 0 auto;
+}
+
+.card-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.65), transparent);
+}
+
+.card-divider-symbol {
+  color: #C5A059;
+  font-size: 0.55rem;
+}
+
+.card-divider-heart {
+  color: #C5A059;
+  font-size: 0.72rem;
 }
 
 /* ==========================================================================
-   Capa 2: Bolsillo Frontal (z-index: 4)
+   Capa 2: Bolsillo Frontal (capa_2.png 2390x1792 con sobre en X=[704, 1704], Y=[568, 1171]) (z-index: 4)
    ========================================================================== */
 .envelope-front {
   z-index: 4;
+  width: calc(100% * 2390 / 1000);
+  height: calc(100% * 1792 / 603);
+  left: calc(-704 / 1000 * 100%);
+  top: calc(-568 / 603 * 100%);
   filter: drop-shadow(0 2px 5px rgba(15, 25, 45, 0.12));
 }
 
@@ -348,13 +524,13 @@ body {
   transform: translate(-50%, -10%);
   width: clamp(74px, 10.8cqh, 90px);
   height: clamp(56px, 8.1cqh, 68px);
-  background-image: url('../assets/lazo_sello.png');
+  background-image: url('../assets/lazo_sello_dorado.png?v=59');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
   pointer-events: none;
   z-index: 10;
-  filter: drop-shadow(0 4px 6px rgba(40, 60, 90, 0.15));
+  filter: drop-shadow(0 4px 8px rgba(184, 137, 57, 0.28));
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
@@ -568,13 +744,13 @@ body {
 /* Fase 2: Apertura del Sobre (Despliegue de solapa capa_3.png hacia arriba) */
 .envelope-stage.is-opening .envelope-flap-closed {
   opacity: 0;
-  transform: translateX(calc(-22.5 / 800 * 100%)) rotateX(90deg);
+  transform: rotateX(90deg);
   pointer-events: none;
 }
 
 .envelope-stage.is-opening .envelope-flap-open {
   opacity: 1;
-  transform: translateX(calc(-22.5 / 800 * 100%)) rotateX(0deg);
+  transform: rotateX(0deg);
 }
 
 /* Fase 3: Extracción de la Carta hacia arriba emergiendo del bolsillo */
@@ -600,12 +776,9 @@ body {
   will-change: top, left, width, height, border-radius;
 }
 
-.card-takeover .card-preview-image {
+.card-takeover .card-live-preview {
   width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  object-position: top center;
+  height: 100%;
 }
 
 /* Destello dorado al tocar */

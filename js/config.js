@@ -1,13 +1,13 @@
 /**
- * Configuración Centralizada del Evento - Liam Alexander
+ * Configuración Centralizada del Evento - Gran Revelación de Sexo
  * Compatible con carga estática inmediata y fallback asíncrono
  */
 window.APP_CONFIG = {
   "evento": {
-    "subtitulo_superior": "CELEBRAMOS LA LLEGADA DE",
-    "nombre_linea_1": "Liam",
-    "nombre_linea_2": "Alexander",
-    "dedicatoria": "Hay un pequeño corazón que ya llena nuestras vidas de amor. Liam Alexander está por llegar y no podemos esperar para conocerlo, abrazarlo y comenzar esta nueva aventura juntos.",
+    "subtitulo_superior": "GRAN REVELACIÓN DE SEXO",
+    "nombre_linea_1": "¿Niño o",
+    "nombre_linea_2": "Niña?",
+    "dedicatoria": "El amor se multiplica y la emoción crece cada día más. Acompáñanos a descubrir el secreto más esperado: ¿será un niño o una niña? ¡Tu presencia hará este momento inolvidable!",
     "musica": {
       "texto_reproductor": "",
       "archivo_audio": "assets/mi_cancion.mp3"
@@ -26,14 +26,14 @@ window.APP_CONFIG = {
     },
     "confirmacion": {
       "titulo": "Confirma tu asistencia",
-      "subtitulo": "¡Nos alegrará contar con tu presencia!",
+      "subtitulo": "¡Acompáñanos a descubrir este gran momento!",
       "boton_texto": "Confirmo",
       "telefono_whatsapp": "584126944023",
-      "mensaje_whatsapp": "¡Hola! ✨ Me hace mucha ilusión acompañarlos en este momento tan especial 💕"
+      "mensaje_whatsapp": "¡Hola! ✨ Me hace mucha ilusión acompañarlos en la gran revelación de sexo 💕 ¿Será niño o niña? ¡Ahí estaré!"
     },
     "agradecimiento_final": {
       "texto_superior": "Tu presencia hará este día aún más especial.",
-      "texto_destacado": "¡Gracias por ser parte de este momento tan importante!"
+      "texto_destacado": "¡Gracias por ser parte de nuestra gran revelación!"
     }
   }
 };

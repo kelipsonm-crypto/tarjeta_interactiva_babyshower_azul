@@ -144,33 +144,74 @@ document.addEventListener('DOMContentLoaded', () => {
   ensureVideoAutoplay();
 
   /* ==========================================================================
-     3. Control del Reproductor de Música
+     3. Control del Reproductor de Música y Autoplay al Cargar Página Completa
      ========================================================================== */
+  const unlockEvents = ['touchstart', 'touchend', 'click', 'pointerdown', 'scroll'];
+
+  const triggerMusicPlayback = () => {
+    if (!bgMusic || isAudioPlaying) return;
+
+    bgMusic.muted = false;
+    const playPromise = bgMusic.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          isAudioPlaying = true;
+          if (playerWrapper) playerWrapper.classList.add('is-playing');
+          if (playBtn) playBtn.title = 'Pausar música';
+          console.log('%c🎵 Música reproduciéndose con éxito en el dispositivo.', 'color: #C5A059; font-weight: bold;');
+          
+          // Desactivar listeners de desbloqueo una vez que la música está sonando
+          unlockEvents.forEach(evt => {
+            window.removeEventListener(evt, triggerMusicPlayback, true);
+            document.removeEventListener(evt, triggerMusicPlayback, true);
+          });
+        })
+        .catch((err) => {
+          // El navegador móvil retiene el audio hasta que ocurra el gesto táctil
+          console.info('Autoplay en espera de interacción táctil:', err.message);
+        });
+    }
+  };
+
+  // 1. Listeners inmediatos en fase de captura (true) en window y document
+  unlockEvents.forEach(evt => {
+    window.addEventListener(evt, triggerMusicPlayback, { capture: true, passive: true });
+    document.addEventListener(evt, triggerMusicPlayback, { capture: true, passive: true });
+  });
+
+  // 2. Intentar autoplay automático al completar la carga total de la página
+  if (document.readyState === 'complete') {
+    setTimeout(triggerMusicPlayback, 400);
+  } else {
+    window.addEventListener('load', () => {
+      setTimeout(triggerMusicPlayback, 400);
+    });
+  }
+
   const toggleAudio = (e) => {
     if (e) e.stopPropagation();
 
     if (!bgMusic) return;
 
     if (!isAudioPlaying) {
+      bgMusic.muted = false;
       const playPromise = bgMusic.play();
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
             isAudioPlaying = true;
-            playerWrapper.classList.add('is-playing');
+            if (playerWrapper) playerWrapper.classList.add('is-playing');
             if (playBtn) playBtn.title = 'Pausar música';
           })
           .catch((err) => {
-            console.info('Audio aún no cargado o bloqueado por el navegador:', err.message);
-            // Mostrar animación activa como respuesta táctil interactiva
-            isAudioPlaying = true;
-            playerWrapper.classList.add('is-playing');
+            console.warn('Audio no disponible:', err);
           });
       }
     } else {
       bgMusic.pause();
       isAudioPlaying = false;
-      playerWrapper.classList.remove('is-playing');
+      if (playerWrapper) playerWrapper.classList.remove('is-playing');
       if (playBtn) playBtn.title = 'Reproducir música';
     }
   };
@@ -233,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const playerWrapper = document.getElementById('playerWrapper');
       const playBtn = document.getElementById('playBtn');
 
-      if (ev.musica.archivo_audio && audioEl) {
+      if (ev.musica.archivo_audio && audioEl && !audioEl.src.endsWith(ev.musica.archivo_audio)) {
         audioEl.src = ev.musica.archivo_audio;
       }
       if (ev.musica.texto_reproductor) {
