@@ -216,8 +216,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const hostsLine2El = document.getElementById('hostsLine2');
     const dedEl = document.getElementById('cardLiveDedication');
 
-    if (subEl && ev.subtitulo_superior) {
-      subEl.textContent = ev.subtitulo_superior;
+    if (subEl) {
+      if (ev.subtitulo_superior) {
+        subEl.textContent = ev.subtitulo_superior;
+        subEl.style.display = '';
+        if (subEl.parentElement) subEl.parentElement.style.display = '';
+      } else {
+        subEl.textContent = '';
+        subEl.style.display = 'none';
+        if (subEl.parentElement) subEl.parentElement.style.display = 'none';
+      }
     }
     if (name1El && ev.nombre_linea_1) {
       name1El.textContent = ev.nombre_linea_1;

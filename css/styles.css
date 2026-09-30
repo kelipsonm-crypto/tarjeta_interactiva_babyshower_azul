@@ -414,19 +414,13 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* Subtítulo */
+/* Subtítulo (Eliminado) */
 .card-live-intro {
-  margin: 0 0 4px 0;
+  display: none !important;
 }
 
 .card-live-subtitle {
-  font-family: var(--font-sans);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 2.4px;
-  text-transform: uppercase;
-  color: #8C6239;
-  margin: 0;
+  display: none !important;
 }
 
 /* Corona dorada */
@@ -434,7 +428,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 0 6px 0;
+  margin: 6px 0 6px 0;
 }
 
 .card-live-crown {

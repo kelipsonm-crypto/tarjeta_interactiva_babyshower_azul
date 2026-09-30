@@ -4,7 +4,7 @@
  */
 window.APP_CONFIG = {
   "evento": {
-    "subtitulo_superior": "GRAN REVELACIÓN DE SEXO",
+    "subtitulo_superior": "",
     "nombre_linea_1": "¿Niño o",
     "nombre_linea_2": "Niña?",
     "anfitriones_linea_1": "Te invita",

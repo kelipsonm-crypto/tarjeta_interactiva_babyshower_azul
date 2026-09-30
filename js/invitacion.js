@@ -227,9 +227,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (nameSecondEl) nameSecondEl.textContent = name2;
 
     // 2. Subtítulo Superior
-    if (ev.subtitulo_superior) {
-      const introSub = document.getElementById('introSubtitle');
-      if (introSub) introSub.textContent = ev.subtitulo_superior;
+    const introSub = document.getElementById('introSubtitle');
+    if (introSub) {
+      if (ev.subtitulo_superior) {
+        introSub.textContent = ev.subtitulo_superior;
+        introSub.style.display = '';
+        if (introSub.parentElement) introSub.parentElement.style.display = '';
+      } else {
+        introSub.textContent = '';
+        introSub.style.display = 'none';
+        if (introSub.parentElement) introSub.parentElement.style.display = 'none';
+      }
     }
 
     // 3. Dedicatoria
