@@ -327,8 +327,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (rsvpBtnEl && ev.confirmacion.telefono_whatsapp) {
         const phone = ev.confirmacion.telefono_whatsapp.toString().replace(/[^0-9]/g, '');
-        const msg = encodeURIComponent(ev.confirmacion.mensaje_whatsapp || '');
-        rsvpBtnEl.href = `https://api.whatsapp.com/send?phone=${phone}&text=${msg}`;
+        const rawMsg = ev.confirmacion.mensaje_whatsapp || '';
+        const msg = encodeURIComponent(rawMsg).replace(/!/g, '%21');
+        rsvpBtnEl.href = `https://wa.me/${phone}?text=${msg}`;
+        rsvpBtnEl.setAttribute('target', '_blank');
+        rsvpBtnEl.setAttribute('rel', 'noopener noreferrer');
       }
     }
 

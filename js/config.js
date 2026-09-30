@@ -30,8 +30,8 @@ window.APP_CONFIG = {
       "titulo": "Confirma tu asistencia",
       "subtitulo": "¡Acompáñanos a descubrir este gran momento!",
       "boton_texto": "Confirmo",
-      "telefono_whatsapp": "584126944023",
-      "mensaje_whatsapp": "¡Hola! ✨ Me hace mucha ilusión acompañarlos en la gran revelación de sexo 💕 ¿Será niño o niña? ¡Ahí estaré!"
+      "telefono_whatsapp": "584248287893",
+      "mensaje_whatsapp": "¡Hola! ¡Por supuesto que ahí estaré ✨"
     },
     "agradecimiento_final": {
       "texto_superior": "Tu presencia hará este día aún más especial.",
@@ -39,16 +39,16 @@ window.APP_CONFIG = {
     },
     "codigo_vestimenta": {
       "titulo": "Código de vestimenta",
-      "descripcion": "Beige o blanco"
+      "descripcion": "Blanco"
     },
     "obsequio_asignado": {
-      "titulo": "Obsequio asignado",
+      "titulo": "",
       "nino": {
-        "titulo": "Niño",
+        "titulo": "Team Niño:",
         "detalle": "Pañales"
       },
       "nina": {
-        "titulo": "Niña",
+        "titulo": "Team Niña:",
         "detalle": "Toallas húmedas"
       }
     },
