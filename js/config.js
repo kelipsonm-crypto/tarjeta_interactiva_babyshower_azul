@@ -7,6 +7,8 @@ window.APP_CONFIG = {
     "subtitulo_superior": "GRAN REVELACIÓN DE SEXO",
     "nombre_linea_1": "¿Niño o",
     "nombre_linea_2": "Niña?",
+    "anfitriones_linea_1": "Te invita",
+    "anfitriones_linea_2": "Luis y Michelle",
     "dedicatoria": "El amor se multiplica y la emoción crece cada día más. Acompáñanos a descubrir el secreto más esperado: ¿será un niño o una niña? ¡Tu presencia hará este momento inolvidable!",
     "musica": {
       "texto_reproductor": "",
@@ -34,6 +36,22 @@ window.APP_CONFIG = {
     "agradecimiento_final": {
       "texto_superior": "Tu presencia hará este día aún más especial.",
       "texto_destacado": "¡Gracias por ser parte de nuestra gran revelación!"
-    }
+    },
+    "codigo_vestimenta": {
+      "titulo": "Código de vestimenta",
+      "descripcion": "Beige o blanco"
+    },
+    "obsequio_asignado": {
+      "titulo": "Obsequio asignado",
+      "nino": {
+        "titulo": "Niño",
+        "detalle": "Pañales"
+      },
+      "nina": {
+        "titulo": "Niña",
+        "detalle": "Toallas húmedas"
+      }
+    },
+    "cierre_despedida": "¡Te esperamos!"
   }
 };

@@ -188,28 +188,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
-
-  /**
-   * Asegura la reproducción continua de videos decorativos silenciados en móviles
-   */
-  const ensureVideoPlayback = () => {
-    const videos = [
-      document.getElementById('palmasVideo')
-    ];
-    videos.forEach(v => {
-      if (v) {
-        v.muted = true;
-        const p = v.play();
-        if (p !== undefined) {
-          p.catch(() => {
-            // Se reintentará con el primer toque
-            document.addEventListener('touchstart', () => v.play().catch(() => {}), { once: true });
-          });
-        }
+  const hostsInvitation = document.getElementById('hostsInvitation');
+  if (hostsInvitation) {
+    hostsInvitation.addEventListener('click', (e) => {
+      e.stopPropagation();
+      handleEnvelopeTap(e);
+    });
+    hostsInvitation.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleEnvelopeTap(e);
       }
     });
-  };
+  }
 
   /**
    * Sincroniza dinámicamente el contenido de la carta interior con la configuración actual
@@ -221,6 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const subEl = document.getElementById('cardLiveSubtitle');
     const name1El = document.getElementById('cardLiveName1');
     const name2El = document.getElementById('cardLiveName2');
+    const hostsLine1El = document.getElementById('hostsLine1');
+    const hostsLine2El = document.getElementById('hostsLine2');
     const dedEl = document.getElementById('cardLiveDedication');
 
     if (subEl && ev.subtitulo_superior) {
@@ -231,6 +224,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (name2El && ev.nombre_linea_2) {
       name2El.textContent = ev.nombre_linea_2;
+    }
+    if (hostsLine1El && ev.anfitriones_linea_1) {
+      hostsLine1El.textContent = ev.anfitriones_linea_1;
+    }
+    if (hostsLine2El && ev.anfitriones_linea_2) {
+      hostsLine2El.textContent = ev.anfitriones_linea_2;
     }
     if (dedEl && ev.dedicatoria) {
       const clean = ev.dedicatoria.replace(/^[«"“]/, '').replace(/[»"”]$/, '').trim();
@@ -248,9 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(res => res.json())
     .then(data => syncLiveInvitationCard(data))
     .catch(() => {});
-
-  // Inicializar reproducción fluida nativa por GPU de los videos
-  ensureVideoPlayback();
 
   // Auto-apertura si se pasa el parámetro ?open=1 en la URL (para previsualizaciones o pruebas)
   const urlParams = new URLSearchParams(window.location.search);

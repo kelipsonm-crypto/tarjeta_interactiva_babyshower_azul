@@ -6,7 +6,7 @@
   <title>Invitación Especial | Gran Revelación de Sexo</title>
   
   <meta name="description" content="Invitación especial: Acompáñanos a nuestra gran Revelación de Sexo. Descubre los detalles y celebremos juntos si será niño o niña.">
-  <meta name="theme-color" content="#FDFBF7">
+  <meta name="theme-color" content="#FAF7F2">
 
   <!-- Google Fonts: Great Vibes, Cinzel (Serif clásica romana para números), Cormorant Garamond (Serif clásica) y Montserrat (Modern Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Estilos de la Invitación -->
-  <link rel="stylesheet" href="css/invitacion.css?v=48">
+  <link rel="stylesheet" href="css/invitacion.css?v=82">
 </head>
 <body>
   <!-- Contenedor exterior para escritorio -->
@@ -30,8 +30,11 @@
         <img src="assets/diseno_floral_grande_derecho.png" alt="" class="floral-img" />
       </div>
 
-      <!-- Arreglo Floral Continuo Lateral Izquierdo (Elefante y Cronómetro) -->
+      <!-- Arreglo Floral Continuo Lateral Izquierdo (Elefante, Detalles y Cronómetro) -->
       <div class="floral-frame floral-elephant-left" aria-hidden="true">
+        <img src="assets/diseno_floral_izquierdo.png" alt="" class="floral-img" />
+      </div>
+      <div class="floral-frame floral-details-left" aria-hidden="true">
         <img src="assets/diseno_floral_izquierdo.png" alt="" class="floral-img" />
       </div>
       <div class="floral-frame floral-countdown-left" aria-hidden="true">
@@ -71,7 +74,7 @@
           <!-- Etiqueta del reproductor inyectada dinámicamente (oculta) -->
           <p class="player-label-text" id="playerTextLabel" style="display: none;"></p>
           <!-- Elemento de audio de fondo inyectado dinámicamente -->
-          <audio id="bgMusic" src="assets/mi_cancion.mp3" loop preload="auto"></audio>
+          <audio id="bgMusic" src="assets/mi_cancion.mp3" loop preload="none"></audio>
         </header>
 
         <!-- 2. Subtítulo Introductorio -->
@@ -114,10 +117,13 @@
             <canvas class="butterfly-canvas" id="butterflyLeftCanvas" width="160" height="160"></canvas>
           </div>
 
-          <!-- Elefantito Centrado (Video source oculto + Canvas transparente) -->
+          <!-- Elefantito Centrado (GIF animado transparente) -->
           <div class="elephant-container">
-            <video class="hidden-source-video" id="elephantVideo" src="assets/elefante_bebe.mp4" autoplay loop muted playsinline></video>
-            <canvas class="elephant-canvas" id="elephantCanvas" width="400" height="400"></canvas>
+            <img 
+              src="assets/elefante_bebe.gif" 
+              alt="Elefantito bebé animado" 
+              class="elephant-img" 
+              id="elephantImg" />
           </div>
 
           <!-- Mariposa Derecha (Video source oculto + Canvas transparente) -->
@@ -132,15 +138,14 @@
              ========================================================================== -->
         <section class="event-details-section" aria-label="Detalles del Evento y Cuenta Regresiva">
 
-          <!-- Ramo Botánico Lateral Izquierdo -->
-          <div class="side-floral side-floral-left" aria-hidden="true">
-            <img src="assets/diseno_floral_izquierdo.png" alt="" class="side-floral-img" />
-          </div>
-
-          <!-- Jirafita Animada Lateral Derecha (Canvas en tiempo real) -->
+          <!-- Jirafita Animada Lateral Derecha (GIF animado transparente) -->
           <div class="side-giraffe-container" aria-hidden="true">
-            <video class="hidden-source-video" id="giraffeVideo" src="assets/jirafa_bebe.mp4" autoplay loop muted playsinline></video>
-            <canvas class="giraffe-canvas" id="giraffeCanvas" width="500" height="500"></canvas>
+            <img 
+              src="assets/jirafa_bebe.gif" 
+              alt="Jirafita bebé animada" 
+              class="giraffe-img" 
+              id="giraffeImg" 
+              loading="lazy" />
           </div>
 
           <!-- Contenedor Central de Filas de Información -->
@@ -300,34 +305,76 @@
 
           <!-- Árboles Safari: Fuera de la caja de la cebra y AL FONDO DE TODO (z-index: 1) -->
           <div class="safari-tree safari-tree-left zebra-tree zebra-tree-left" id="safariTreeLeft" aria-hidden="true">
-            <img src="assets/diseno_arboles_izquierdo.png?v=3" alt="" class="safari-tree-img zebra-tree-img" />
+            <img src="assets/diseno_arboles_izquierdo.png?v=3" alt="" class="safari-tree-img zebra-tree-img" loading="lazy" />
           </div>
           <div class="safari-tree safari-tree-right zebra-tree zebra-tree-right" id="safariTreeRight" aria-hidden="true">
-            <img src="assets/diseno_arboles_derecho.png?v=3" alt="" class="safari-tree-img zebra-tree-img" />
+            <img src="assets/diseno_arboles_derecho.png?v=3" alt="" class="safari-tree-img zebra-tree-img" loading="lazy" />
           </div>
 
-          <!-- Caja de la Cebra Bebé (Totalmente aislada de los árboles, Capa z-index: 2) -->
+          <!-- Caja de la Cebra Bebé (GIF animado, Capa z-index: 2) -->
           <div class="zebra-box" id="zebraBox">
             <div class="zebra-video-wrap">
-              <video class="hidden-source-video zebra-video" id="zebraVideo" src="assets/diseno_cebra_bebe.mp4" autoplay loop muted playsinline webkit-playsinline></video>
-              <canvas class="zebra-canvas" id="zebraCanvas" width="480" height="480"></canvas>
+              <img 
+                src="assets/diseno_cebra_bebe.gif" 
+                alt="Cebra bebé animada" 
+                class="zebra-img" 
+                id="zebraImg" 
+                loading="lazy" />
             </div>
           </div>
 
-          <!-- Cartel / Cartela Final de Agradecimiento (Capa superior z-index: 3) -->
-          <div class="thanks-cartouche" aria-label="Mensaje de agradecimiento">
+          <!-- Cartel / Cartela Inferior: Vestimenta y Obsequio Asignado (Capa superior z-index: 3) -->
+          <div class="thanks-cartouche info-cartouche" id="infoCartouche" aria-label="Código de vestimenta y sugerencia de obsequios">
             <!-- Corona dorada imperial en la parte superior del marco -->
             <div class="cartouche-crown-wrap" aria-hidden="true">
               <img src="assets/corona.png" alt="Corona real" class="cartouche-crown-img" />
             </div>
 
-            <!-- Línea Superior Serif sobria en azul porcelana -->
-            <p class="thanks-top-text" id="thanksTopText"></p>
+            <!-- Sección 1: Código de Vestimenta -->
+            <div class="cartouche-section cartouche-dress-code">
+              <h3 class="cartouche-title" id="dressCodeTitle">Código de vestimenta</h3>
+              <div class="dress-code-swatches" aria-hidden="true">
+                <span class="swatch-box swatch-white" title="Blanco"></span>
+                <span class="swatch-box swatch-beige" title="Beige"></span>
+              </div>
+              <p class="dress-code-desc" id="dressCodeDesc">Beige o blanco</p>
+            </div>
 
-            <!-- Línea Destacada caligráfica clásica fluida -->
-            <p class="thanks-highlight-text" id="thanksHighlightText"></p>
+            <!-- Separador Visual Minimalista con Rombo/Corazón -->
+            <div class="cartouche-divider" aria-hidden="true">
+              <span class="cartouche-divider-line"></span>
+              <span class="cartouche-divider-icon">♦</span>
+              <span class="cartouche-divider-line"></span>
+            </div>
 
-            <!-- Remate Inferior: Corazón azul porcelana con líneas doradas -->
+            <!-- Sección 2: Obsequio Asignado (2 Columnas Niño / Niña) -->
+            <div class="cartouche-section cartouche-gifts">
+              <h3 class="cartouche-title" id="giftTitle">Obsequio asignado</h3>
+              <div class="gift-columns">
+                <!-- Columna Niño -->
+                <div class="gift-col gift-col-boy">
+                  <div class="gift-col-header">
+                    <span class="gift-icon" aria-hidden="true">✦</span>
+                    <span class="gift-gender" id="giftBoyTitle">Niño</span>
+                  </div>
+                  <p class="gift-detail" id="giftBoyDetail">Pañales</p>
+                </div>
+
+                <!-- Columna Niña -->
+                <div class="gift-col gift-col-girl">
+                  <div class="gift-col-header">
+                    <span class="gift-icon" aria-hidden="true">✦</span>
+                    <span class="gift-gender" id="giftGirlTitle">Niña</span>
+                  </div>
+                  <p class="gift-detail" id="giftGirlDetail">Toallas húmedas</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cierre Inferior: Frase final en caligrafía cursiva -->
+            <p class="cartouche-farewell" id="farewellText">¡Te esperamos!</p>
+
+            <!-- Remate Inferior: Corazón y líneas ornamentales -->
             <div class="thanks-bottom-ornament" aria-hidden="true">
               <span class="thanks-ornament-line"></span>
               <span class="thanks-bottom-symbol">♥</span>
@@ -341,8 +388,8 @@
   </main>
 
   <!-- Script de Configuración Centralizada -->
-  <script src="js/config.js?v=11"></script>
+  <script src="js/config.js?v=13"></script>
   <!-- Script de Interacción, Keying de Canvas y Audio -->
-  <script src="js/invitacion.js?v=14"></script>
+  <script src="js/invitacion.js?v=21"></script>
 </body>
 </html>

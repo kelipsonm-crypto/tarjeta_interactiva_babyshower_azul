@@ -78,13 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Configurar keying para Elefantito y Mariposas
-  setupCanvasKeying(
-    document.getElementById('elephantVideo'),
-    document.getElementById('elephantCanvas'),
-    235,
-    215
-  );
+  // Configurar keying para Mariposas, Jirafa y Cebra
 
   setupCanvasKeying(
     document.getElementById('butterflyLeftVideo'),
@@ -100,48 +94,28 @@ document.addEventListener('DOMContentLoaded', () => {
     210
   );
 
-  setupCanvasKeying(
-    document.getElementById('giraffeVideo'),
-    document.getElementById('giraffeCanvas'),
-    234,
-    214
-  );
-
-  setupCanvasKeying(
-    document.getElementById('zebraVideo'),
-    document.getElementById('zebraCanvas'),
-    230,
-    205
-  );
-
   /* ==========================================================================
-     2. Reproducción Continua de Videos Silenciados en Móviles
+     2. Reproducción Optimizada de Videos Silenciados (Mariposas)
      ========================================================================== */
-  const videoElements = [
-    document.getElementById('elephantVideo'),
+  const aboveFoldVideos = [
     document.getElementById('butterflyLeftVideo'),
-    document.getElementById('butterflyRightVideo'),
-    document.getElementById('giraffeVideo'),
-    document.getElementById('zebraVideo')
+    document.getElementById('butterflyRightVideo')
   ];
 
-  const ensureVideoAutoplay = () => {
-    videoElements.forEach(v => {
-      if (v) {
-        v.muted = true;
-        v.setAttribute('playsinline', '');
-        v.setAttribute('muted', '');
-        const p = v.play();
-        if (p !== undefined) {
-          p.catch(() => {
-            document.addEventListener('pointerdown', () => v.play().catch(() => {}), { once: true });
-          });
-        }
+  // Reproducir de inmediato los elementos visibles al inicio
+  aboveFoldVideos.forEach(v => {
+    if (v) {
+      v.muted = true;
+      v.setAttribute('playsinline', '');
+      v.setAttribute('muted', '');
+      const p = v.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          document.addEventListener('pointerdown', () => v.play().catch(() => {}), { once: true });
+        });
       }
-    });
-  };
-
-  ensureVideoAutoplay();
+    }
+  });
 
   /* ==========================================================================
      3. Control del Reproductor de Música y Autoplay al Cargar Página Completa
@@ -358,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 10. Agradecimiento Final
+    // 10. Agradecimiento Final / Información Inferior (Vestimenta y Obsequios)
     if (ev.agradecimiento_final) {
       const thanksTopEl = document.getElementById('thanksTopText');
       const thanksHighlightEl = document.getElementById('thanksHighlightText');
@@ -368,6 +342,48 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (thanksHighlightEl && ev.agradecimiento_final.texto_destacado) {
         thanksHighlightEl.textContent = ev.agradecimiento_final.texto_destacado;
+      }
+    }
+
+    if (ev.codigo_vestimenta) {
+      const dressTitleEl = document.getElementById('dressCodeTitle');
+      const dressDescEl = document.getElementById('dressCodeDesc');
+      if (dressTitleEl && ev.codigo_vestimenta.titulo) {
+        dressTitleEl.textContent = ev.codigo_vestimenta.titulo;
+      }
+      if (dressDescEl && ev.codigo_vestimenta.descripcion) {
+        dressDescEl.textContent = ev.codigo_vestimenta.descripcion;
+      }
+    }
+
+    if (ev.obsequio_asignado) {
+      const giftTitleEl = document.getElementById('giftTitle');
+      const boyTitleEl = document.getElementById('giftBoyTitle');
+      const boyDetailEl = document.getElementById('giftBoyDetail');
+      const girlTitleEl = document.getElementById('giftGirlTitle');
+      const girlDetailEl = document.getElementById('giftGirlDetail');
+
+      if (giftTitleEl && ev.obsequio_asignado.titulo) {
+        giftTitleEl.textContent = ev.obsequio_asignado.titulo;
+      }
+      if (boyTitleEl && ev.obsequio_asignado.nino && ev.obsequio_asignado.nino.titulo) {
+        boyTitleEl.textContent = ev.obsequio_asignado.nino.titulo;
+      }
+      if (boyDetailEl && ev.obsequio_asignado.nino && ev.obsequio_asignado.nino.detalle) {
+        boyDetailEl.textContent = ev.obsequio_asignado.nino.detalle;
+      }
+      if (girlTitleEl && ev.obsequio_asignado.nina && ev.obsequio_asignado.nina.titulo) {
+        girlTitleEl.textContent = ev.obsequio_asignado.nina.titulo;
+      }
+      if (girlDetailEl && ev.obsequio_asignado.nina && ev.obsequio_asignado.nina.detalle) {
+        girlDetailEl.textContent = ev.obsequio_asignado.nina.detalle;
+      }
+    }
+
+    if (ev.cierre_despedida) {
+      const farewellEl = document.getElementById('farewellText');
+      if (farewellEl) {
+        farewellEl.textContent = ev.cierre_despedida;
       }
     }
 

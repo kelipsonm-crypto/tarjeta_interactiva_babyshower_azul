@@ -5,22 +5,31 @@
 
 /* --- Reset y Variables de Diseño --- */
 :root {
-  --color-bg-ambient: #FFFFFF;
-  --color-card-bg-top: #FFFFFF;
-  --color-card-bg-mid: #FFFFFF;
-  --color-card-bg-bot: #FFFFFF;
+  --color-bg-ambient: #EDE7DC;
+  --color-card-bg-top: #FAF7F2;
+  --color-card-bg-mid: #F3EBDD;
+  --color-card-bg-bot: #E9DECD;
 
-  --color-text-primary: #554D45;
-  --color-text-secondary: #7A7268;
-  --color-gold: #C5A059;
-  --color-gold-glow: rgba(197, 160, 89, 0.45);
-  --color-blue-ink: #3A5F85;
+  /* Paleta de colores cálida vintage */
+  --color-mocha-deep: #6B4226;
+  --color-saddle-brown: #8C6239;
+  --color-camel-tan: #B58A63;
+  --color-latte-soft: #CDB296;
+  --color-almond-light: #E6D7C3;
+  --color-cream-soft: #F5EFEB;
+  --color-warm-white: #FDFBF7;
+
+  --color-text-primary: #6B4226;
+  --color-text-secondary: #8C6239;
+  --color-gold: #B58A63;
+  --color-gold-glow: rgba(181, 138, 99, 0.45);
+  --color-blue-ink: #6B4226;
 
   --font-serif: 'Cormorant Garamond', Garamond, Georgia, serif;
   --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  --shadow-envelope: 0 3px 5px rgba(15, 25, 45, 0.26);
-  --shadow-seal: 0 6px 16px rgba(120, 85, 20, 0.35);
+  --shadow-envelope: 0 3px 5px rgba(107, 66, 38, 0.22);
+  --shadow-seal: 0 6px 16px rgba(107, 66, 38, 0.35);
   --shadow-device: 0 28px 70px -15px rgba(50, 45, 40, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.07);
 }
 
@@ -54,7 +63,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: #FFFFFF;
+  background: radial-gradient(circle at 50% 25%, #F8F5EE 0%, #E2D7C5 100%);
 }
 
 /* Marco simulador de smartphone en desktop / Fullscreen en móviles */
@@ -62,9 +71,9 @@ body {
   width: 100%;
   max-width: 425px;
   height: 100%;
-  max-height: min(875px, calc(100dvh - 32px));
-  aspect-ratio: 9 / 18.5;
-  background: #FFFFFF;
+  max-height: min(835px, calc(100dvh - 72px));
+  aspect-ratio: 9 / 17.65;
+  background: linear-gradient(180deg, var(--color-card-bg-top) 0%, var(--color-card-bg-mid) 42%, var(--color-card-bg-bot) 100%);
   border-radius: 40px;
   box-shadow: var(--shadow-device);
   position: relative;
@@ -80,7 +89,7 @@ body {
 .card-screen {
   width: 100%;
   height: 100%;
-  background-color: #FFFFFF;
+  background: linear-gradient(180deg, var(--color-card-bg-top) 0%, var(--color-card-bg-mid) 42%, var(--color-card-bg-bot) 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -99,8 +108,6 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
 }
 
 /* Globos en la esquina superior izquierda */
@@ -109,7 +116,6 @@ body {
   top: calc(clamp(6px, 1.2cqh, 10px) + 30px);
   left: clamp(2px, 1cqw, 4px);
   width: clamp(105px, 15.5cqh, 130px);
-  z-index: 10;
   filter: drop-shadow(0 10px 22px rgba(50, 70, 100, 0.12));
 }
 
@@ -135,26 +141,30 @@ body {
   }
 }
 
-/* Palmeras en la esquina superior derecha (video animado escalado a la par de los globos) */
+/* Palmeras en la esquina superior derecha (GIF animado vintage) */
 .decor-palms {
   position: absolute;
-  top: calc(clamp(-8px, -1cqh, -2px) + 50px);
+  top: calc(clamp(-8px, -1cqh, -2px) + 20px);
   right: calc(clamp(-10px, -2cqw, -4px) - 60px);
   width: clamp(220px, calc(25.5cqh + 50px), 265px);
   height: clamp(250px, calc(25.5cqh + 80px), 295px);
-  z-index: 2;
   pointer-events: none;
-  overflow: visible;
+  mix-blend-mode: multiply;
+}
+
+.palm-trees-img,
+.palm-trees-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  filter: brightness(1.06) contrast(1.04);
 }
 
 .palm-trees-video {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  display: block;
-  pointer-events: none;
-  opacity: 0.95;
-  transform: translateZ(0);
+  display: none;
 }
 
 /* ==========================================================================
@@ -170,7 +180,7 @@ body {
   margin-top: auto;
   margin-bottom: clamp(6px, 1.3cqh, 10px);
   padding: 0 10px;
-  transform: translateY(clamp(4px, 1.2cqh, 10px));
+  transform: translateY(calc(clamp(4px, 1.2cqh, 10px) - 50px));
 }
 
 /* Corona dorada */
@@ -223,13 +233,13 @@ body {
   display: inline-block;
   width: clamp(32px, 11cqw, 44px);
   height: 1px;
-  background: linear-gradient(90deg, rgba(197, 160, 89, 0), rgba(197, 160, 89, 0.85), rgba(197, 160, 89, 0));
+  background: linear-gradient(90deg, rgba(205, 178, 150, 0), rgba(205, 178, 150, 0.85), rgba(205, 178, 150, 0));
 }
 
 .gold-heart-icon {
   display: inline-block;
-  color: var(--color-gold);
-  filter: drop-shadow(0 1px 2px rgba(197, 160, 89, 0.3));
+  color: #8C6239;
+  filter: drop-shadow(0 1px 2px rgba(140, 98, 57, 0.3));
 }
 
 /* ==========================================================================
@@ -347,7 +357,7 @@ body {
   position: absolute;
   top: 0;
   width: 25%;
-  max-width: 82px;
+  max-width: 52px;
   pointer-events: none;
   z-index: 1;
 }
@@ -415,7 +425,7 @@ body {
   font-weight: 600;
   letter-spacing: 2.4px;
   text-transform: uppercase;
-  color: #3A5F85;
+  color: #8C6239;
   margin: 0;
 }
 
@@ -432,7 +442,7 @@ body {
   height: auto;
   display: block;
   margin: 0 auto -2px auto;
-  filter: drop-shadow(0 2px 4px rgba(184, 137, 57, 0.28));
+  filter: drop-shadow(0 2px 4px rgba(140, 98, 57, 0.28));
 }
 
 /* Nombres / Título principal */
@@ -448,10 +458,10 @@ body {
   display: block;
   font-size: 2.1rem;
   line-height: 1.1;
-  background: linear-gradient(135deg, #8E6D2F 0%, #C5A059 28%, #F3E5AB 48%, #D4AF37 68%, #8E6D2F 100%);
+  background: linear-gradient(135deg, #6B4226 0%, #8C6239 30%, #B58A63 50%, #8C6239 70%, #6B4226 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 4px rgba(142, 109, 47, 0.22));
+  filter: drop-shadow(0 2px 4px rgba(107, 66, 38, 0.22));
 }
 
 .card-live-title .card-live-name-2 {
@@ -470,7 +480,7 @@ body {
   font-style: italic;
   font-weight: 500;
   line-height: 1.42;
-  color: #1A2F4C;
+  color: #6B4226;
   margin: 0;
   text-align: center;
 }
@@ -489,16 +499,16 @@ body {
 .card-divider-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.65), transparent);
+  background: linear-gradient(90deg, transparent, rgba(205, 178, 150, 0.65), transparent);
 }
 
 .card-divider-symbol {
-  color: #C5A059;
+  color: #8C6239;
   font-size: 0.55rem;
 }
 
 .card-divider-heart {
-  color: #C5A059;
+  color: #8C6239;
   font-size: 0.72rem;
 }
 
@@ -616,7 +626,7 @@ body {
   position: absolute;
   left: 50%;
   transform: translateX(-50%) translateZ(30px);
-  bottom: -110px;
+  bottom: -120px;
   width: calc(55% + 150px);
   max-width: 370px;
   height: auto;
@@ -647,12 +657,59 @@ body {
   position: relative;
   z-index: 25;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: clamp(4px, 1cqh, 8px);
   padding: 0 0 clamp(8px, 1.5cqh, 12px) 0;
-  margin-top: clamp(115px, calc(15cqh + 20px), 140px);
+  margin-top: clamp(148px, calc(14cqh + 54px), 170px);
   margin-bottom: auto;
   transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Mensaje de los anfitriones ("Te invitan" / "Luis y Michelle" en Dorado Real) */
+.hosts-invitation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0 8px;
+  cursor: pointer;
+  line-height: 1.15;
+}
+
+.hosts-line-1 {
+  display: block;
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-weight: 400;
+  font-size: clamp(1.22rem, 4.2cqw, 1.55rem);
+  line-height: 1.12;
+  background: linear-gradient(135deg, #87530E 0%, #AD833A 28%, #DFBE79 50%, #AD833A 75%, #75480B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(110, 72, 20, 0.32));
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  margin: 0;
+}
+
+.hosts-line-2 {
+  display: block;
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-weight: 400;
+  font-size: clamp(1.55rem, 5.3cqw, 2.05rem);
+  line-height: 1.12;
+  margin-top: -4px;
+  background: linear-gradient(135deg, #87530E 0%, #AD833A 28%, #DFBE79 50%, #AD833A 75%, #75480B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(110, 72, 20, 0.36));
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  white-space: nowrap;
 }
 
 .tap-invite-container {
@@ -682,7 +739,7 @@ body {
   font-weight: 600;
   font-style: normal;
   letter-spacing: 0.18em;
-  color: var(--color-blue-ink);
+  color: #6B4226;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
@@ -734,7 +791,12 @@ body {
   pointer-events: none;
 }
 
-.card-screen.is-opening .card-header,
+.card-screen.is-opening .card-header {
+  opacity: 0;
+  transform: translateY(-68px);
+  pointer-events: none;
+}
+
 .card-screen.is-opening .card-footer {
   opacity: 0;
   transform: translateY(-12px);
@@ -767,7 +829,7 @@ body {
 /* Fase 4: Capa de Expansión a Pantalla Completa (Takeover: z-index: 99999) */
 .card-takeover {
   position: fixed;
-  background-color: #FFFFFF;
+  background-color: #FFFDF9;
   z-index: 99999;
   pointer-events: none;
   display: none;
@@ -812,7 +874,7 @@ body {
 @media (max-width: 480px) {
   .page-wrapper {
     padding: 0;
-    background: #FFFFFF;
+    background: var(--color-card-bg-top);
     height: 100dvh;
     min-height: 100dvh;
     overflow: hidden;
@@ -855,13 +917,13 @@ body {
 
   .decor-palms {
     width: 140px;
-    top: -4px;
+    top: -34px;
     right: -4px;
   }
 
   .card-header {
     margin-bottom: 6px;
-    transform: translateY(4px);
+    transform: translateY(-46px);
   }
 
   .crown-container {
@@ -880,8 +942,18 @@ body {
   }
 
   .card-footer {
-    margin-top: 105px;
-    padding-bottom: 6px;
+    margin-top: 130px;
+    padding-bottom: 4px;
+    gap: 4px;
+  }
+
+  .hosts-line-1 {
+    font-size: clamp(1.1rem, 3.8cqw, 1.3rem);
+  }
+
+  .hosts-line-2 {
+    font-size: clamp(1.35rem, 4.6cqw, 1.65rem);
+    margin-top: -3px;
   }
 
   .tap-invite-text {
@@ -900,7 +972,7 @@ body {
   }
 
   .card-header {
-    transform: translateY(2px);
+    transform: translateY(-48px);
     margin-bottom: 4px;
   }
 
@@ -920,8 +992,18 @@ body {
   }
 
   .card-footer {
-    margin-top: 85px;
-    padding-bottom: 4px;
+    margin-top: 110px;
+    padding-bottom: 2px;
+    gap: 2px;
+  }
+
+  .hosts-line-1 {
+    font-size: 1.02rem;
+  }
+
+  .hosts-line-2 {
+    font-size: 1.25rem;
+    margin-top: -2px;
   }
 
   .tap-invite-text {

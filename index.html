@@ -7,7 +7,7 @@
   
   <!-- Meta SEO y Redes Sociales -->
   <meta name="description" content="Invitación digital interactiva para nuestra gran Revelación de Sexo. Toca el sobre para descubrir si será niño o niña.">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#FAF7F2">
 
   <!-- Google Fonts: Cormorant Garamond, Great Vibes, Alex Brush & Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="css/styles.css?v=60">
+  <link rel="stylesheet" href="css/styles.css?v=78">
 </head>
 <body>
   <!-- Contenedor exterior (Fondo ambiental para escritorio) -->
@@ -35,18 +35,11 @@
 
           <!-- Palmeras estilo acuarela Toile de Jouy animadas (Superior Derecha) -->
           <div class="decor-palms" id="decorPalms">
-            <video 
-              class="palm-trees-video" 
-              id="palmasVideo" 
-              src="assets/palmas_move.mp4" 
-              autoplay 
-              loop 
-              muted 
-              playsinline 
-              webkit-playsinline 
-              preload="auto" 
-              aria-label="Palmeras animadas estilo Toile de Jouy">
-            </video>
+            <img 
+              src="assets/palmas_bintage.gif" 
+              alt="Palmeras animadas estilo vintage" 
+              class="palm-trees-img" 
+              id="palmasImg" />
           </div>
         </div>
 
@@ -57,12 +50,10 @@
             <img src="assets/corona.png" alt="Corona real dorada" class="gold-crown" />
           </div>
 
-          <!-- Texto poético -->
-          <div class="poetic-text">
-            <p class="verse">Un dulce secreto</p>
-            <p class="verse">está por revelarse...</p>
-            <p class="verse">¿Será niño o niña?</p>
-            <p class="verse highlight">¡Descúbrelo aquí!</p>
+          <!-- Mensaje de los anfitriones -->
+          <div class="hosts-invitation" id="hostsInvitation" role="button" tabindex="0" aria-label="Te invita Luis y Michelle">
+            <span class="hosts-line-1" id="hostsLine1">Te invita</span>
+            <span class="hosts-line-2" id="hostsLine2">Luis y Michelle</span>
           </div>
 
           <!-- Divisor decorativo inferior con corazón dorado -->
@@ -240,7 +231,7 @@
   <div class="card-takeover" id="cardTakeover" aria-hidden="true"></div>
 
   <!-- Configuración Centralizada y Script Principal -->
-  <script src="js/config.js?v=12"></script>
-  <script src="js/main.js?v=17"></script>
+  <script src="js/config.js?v=15"></script>
+  <script src="js/main.js?v=20"></script>
 </body>
 </html>
