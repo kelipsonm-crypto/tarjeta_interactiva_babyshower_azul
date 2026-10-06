@@ -15,12 +15,12 @@ window.APP_CONFIG = {
       "archivo_audio": "assets/mi_cancion.mp3"
     },
     "fecha": {
-      "dia_semana": "Viernes",
-      "dia_mes": "22 de octubre",
+      "dia_semana": "Sábado",
+      "dia_mes": "10 de octubre",
       "anio": "de 2026"
     },
-    "hora": "8:00 PM",
-    "cuenta_regresiva_iso": "2026-10-22T20:00:00",
+    "hora": "4:00 PM",
+    "cuenta_regresiva_iso": "2026-10-10T16:00:00",
     "ubicacion": {
       "nombre_lugar": "Lugar del Evento",
       "direccion": "Av Cumaná-Cumanacoa Frente a Pollos Oriente",

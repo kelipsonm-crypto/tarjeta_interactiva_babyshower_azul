@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================================================
      4. Carga y Aplicación de Configuración Centralizada (config.json / config.js)
      ========================================================================== */
-  let targetDate = new Date('2026-10-22T20:00:00');
+  let targetDate = new Date('2026-10-10T16:00:00');
   const cdDays = document.getElementById('cdDays');
   const cdHours = document.getElementById('cdHours');
   const cdMinutes = document.getElementById('cdMinutes');
