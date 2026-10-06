@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Invitación Especial | Gran Revelación de Sexo</title>
-  
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Invitación Especial | Revelación de Sexo</title>
+
   <!-- Meta SEO y Redes Sociales -->
-  <meta name="description" content="Invitación digital interactiva para nuestra gran Revelación de Sexo. Toca el sobre para descubrir si será niño o niña.">
+  <meta name="description"
+    content="Invitación digital interactiva para nuestra gran Revelación de Sexo. Toca el sobre para descubrir si será niño o niña.">
   <meta name="theme-color" content="#FAF7F2">
 
   <!-- Google Fonts: Cormorant Garamond, Great Vibes, Alex Brush & Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Preload de recursos críticos para apertura instantánea y máxima fluidez -->
   <link rel="preload" as="image" href="assets/capa_1.webp" type="image/webp">
@@ -24,22 +29,24 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="css/styles.css?v=80">
 </head>
+
 <body>
   <!-- Contenedor exterior (Fondo ambiental para escritorio) -->
   <main class="page-wrapper">
     <!-- Simulación de dispositivo móvil (Mobile Frame) -->
     <div class="mobile-device" id="mobileDevice">
-      
+
       <!-- Lienzo principal de la invitación -->
       <section class="card-screen" id="coverScreen" aria-label="Portada de invitación">
-        
+
         <!-- Elementos decorativos superiores de fondo -->
         <div class="decor-layer">
           <!-- Globos decorativos (Superior Izquierda) -->
           <div class="decor-balloons" id="decorBalloons">
             <picture>
               <source srcset="assets/globos.webp" type="image/webp">
-              <img src="assets/globos.png" alt="Globos decorativos rosados y dorados" class="floating-balloons" decoding="async" />
+              <img src="assets/globos.png" alt="Globos decorativos rosados y dorados" class="floating-balloons"
+                decoding="async" />
             </picture>
           </div>
 
@@ -47,12 +54,8 @@
           <div class="decor-palms" id="decorPalms">
             <picture>
               <source srcset="assets/palmas_bintage.webp" type="image/webp">
-              <img 
-                src="assets/palmas_bintage.gif" 
-                alt="Palmeras animadas estilo vintage" 
-                class="palm-trees-img" 
-                id="palmasImg" 
-                decoding="async" />
+              <img src="assets/palmas_bintage.gif" alt="Palmeras animadas estilo vintage" class="palm-trees-img"
+                id="palmasImg" decoding="async" />
             </picture>
           </div>
         </div>
@@ -65,7 +68,8 @@
           </div>
 
           <!-- Mensaje de los anfitriones -->
-          <div class="hosts-invitation" id="hostsInvitation" role="button" tabindex="0" aria-label="Te invita Luis y Michelle">
+          <div class="hosts-invitation" id="hostsInvitation" role="button" tabindex="0"
+            aria-label="Te invita Luis y Michelle">
             <span class="hosts-line-1" id="hostsLine1">Te invita</span>
             <span class="hosts-line-2" id="hostsLine2">Luis y Michelle</span>
           </div>
@@ -74,7 +78,8 @@
           <div class="heart-divider" aria-hidden="true">
             <span class="divider-line"></span>
             <svg class="gold-heart-icon" viewBox="0 0 24 24" width="14" height="14" fill="#C5A059">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
             <span class="divider-line"></span>
           </div>
@@ -82,36 +87,41 @@
 
         <!-- Sección central interactiva: Sobre multicapa y Carta interactiva -->
         <div class="envelope-stage" id="envelopeStage">
-          <div class="envelope-container" id="envelopeContainer" role="button" tabindex="0" aria-label="Abrir sobre de invitación">
-            
+          <div class="envelope-container" id="envelopeContainer" role="button" tabindex="0"
+            aria-label="Abrir sobre de invitación">
+
             <!-- Capa 1 (Fondo trasero): z-index: 1 -->
             <picture>
               <source srcset="assets/capa_1.webp" type="image/webp">
-              <img src="assets/capa_1.png" class="envelope-layer envelope-back" alt="Fondo trasero del sobre" decoding="async" />
+              <img src="assets/capa_1.png" class="envelope-layer envelope-back" alt="Fondo trasero del sobre"
+                decoding="async" />
             </picture>
 
             <!-- Capa Solapa Superior Abierta: z-index: 2 -->
             <picture>
               <source srcset="assets/capa_3.webp" type="image/webp">
-              <img src="assets/capa_3.png" class="envelope-layer envelope-flap-open" id="flapOpen" alt="Solapa abierta del sobre" decoding="async" />
+              <img src="assets/capa_3.png" class="envelope-layer envelope-flap-open" id="flapOpen"
+                alt="Solapa abierta del sobre" decoding="async" />
             </picture>
 
             <!-- Ranura intermedia con Tarjeta / Carta (Renderizado Dinámico en Vivo): z-index: 3 -->
             <div class="envelope-card-slot" id="cardSlot">
               <div class="invitation-card" id="invitationCard" aria-label="Vista previa de la invitación">
-                
+
                 <div class="card-live-preview">
                   <!-- Arreglos Florales Superiores -->
                   <div class="card-live-floral card-live-floral-left" aria-hidden="true">
                     <picture>
                       <source srcset="assets/diseno_floral_grande_izquierdo.webp" type="image/webp">
-                      <img src="assets/diseno_floral_grande_izquierdo.png" alt="" class="card-live-floral-img" decoding="async" />
+                      <img src="assets/diseno_floral_grande_izquierdo.png" alt="" class="card-live-floral-img"
+                        decoding="async" />
                     </picture>
                   </div>
                   <div class="card-live-floral card-live-floral-right" aria-hidden="true">
                     <picture>
                       <source srcset="assets/diseno_floral_grande_derecho.webp" type="image/webp">
-                      <img src="assets/diseno_floral_grande_derecho.png" alt="" class="card-live-floral-img" decoding="async" />
+                      <img src="assets/diseno_floral_grande_derecho.png" alt="" class="card-live-floral-img"
+                        decoding="async" />
                     </picture>
                   </div>
 
@@ -139,7 +149,9 @@
 
                     <!-- Dedicatoria -->
                     <div class="card-live-dedication-wrap">
-                      <p class="card-live-dedication" id="cardLiveDedication">«El amor se multiplica y la emoción crece cada día más. Acompáñanos a descubrir el secreto más esperado: ¿será un niño o una niña? ¡Tu presencia hará este momento inolvidable!»</p>
+                      <p class="card-live-dedication" id="cardLiveDedication">«El amor se multiplica y la emoción crece
+                        cada día más. Acompáñanos a descubrir el secreto más esperado: ¿será un niño o una niña? ¡Tu
+                        presencia hará este momento inolvidable!»</p>
                     </div>
 
                     <!-- Divisor dorado -->
@@ -159,13 +171,15 @@
             <!-- Capa 2 (Bolsillo Frontal): z-index: 4 -->
             <picture>
               <source srcset="assets/capa_2.webp" type="image/webp">
-              <img src="assets/capa_2.png" class="envelope-layer envelope-front" alt="Bolsillo frontal del sobre" decoding="async" />
+              <img src="assets/capa_2.png" class="envelope-layer envelope-front" alt="Bolsillo frontal del sobre"
+                decoding="async" />
             </picture>
 
             <!-- Capa Solapa Cerrada: z-index: 6 -->
             <picture>
               <source srcset="assets/capa_3.webp" type="image/webp">
-              <img src="assets/capa_3.png" class="envelope-layer envelope-flap-closed" id="flapClosed" alt="Solapa cerrada del sobre" decoding="async" />
+              <img src="assets/capa_3.png" class="envelope-layer envelope-flap-closed" id="flapClosed"
+                alt="Solapa cerrada del sobre" decoding="async" />
             </picture>
 
             <!-- Lazo dorado bajo el sello de cera: z-index: 10 -->
@@ -175,7 +189,8 @@
             <div class="wax-seal" id="waxSeal" title="Toca para abrir">
               <picture>
                 <source srcset="assets/sello.webp" type="image/webp">
-                <img src="assets/sello.png" alt="Sello de cera dorado con motivo de pajarito" class="seal-img" decoding="async" />
+                <img src="assets/sello.png" alt="Sello de cera dorado con motivo de pajarito" class="seal-img"
+                  decoding="async" />
               </picture>
               <div class="seal-shine" aria-hidden="true"></div>
               <div class="seal-pulse-ring" aria-hidden="true"></div>
@@ -185,12 +200,8 @@
             <div class="tiger-cubs-container" id="tigerCubsContainer">
               <picture>
                 <source srcset="assets/tigres_bebes.webp" type="image/webp">
-                <img 
-                  src="assets/tigres_bebes_fallback.gif" 
-                  alt="Cachorros de tigres bebés jugando juntos" 
-                  class="tiger-cubs-img" 
-                  id="tigerCubsImg"
-                  decoding="async" />
+                <img src="assets/tigres_bebes_fallback.gif" alt="Cachorros de tigres bebés jugando juntos"
+                  class="tiger-cubs-img" id="tigerCubsImg" decoding="async" />
               </picture>
             </div>
 
@@ -201,62 +212,67 @@
         <footer class="card-footer" id="cardFooter">
           <div class="tap-invite-container" id="tapInviteBtn" role="button" tabindex="0" aria-label="Toca el sobre">
             <span class="tap-invite-text">Toca el sobre</span>
-            <svg class="tap-invite-decor" viewBox="0 0 180 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg class="tap-invite-decor" viewBox="0 0 180 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
               <defs>
                 <linearGradient id="goldStem" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#C5A059" stop-opacity="0.3"/>
-                  <stop offset="25%" stop-color="#E2C98A"/>
-                  <stop offset="50%" stop-color="#C5A059"/>
-                  <stop offset="75%" stop-color="#E2C98A"/>
-                  <stop offset="100%" stop-color="#C5A059" stop-opacity="0.3"/>
+                  <stop offset="0%" stop-color="#C5A059" stop-opacity="0.3" />
+                  <stop offset="25%" stop-color="#E2C98A" />
+                  <stop offset="50%" stop-color="#C5A059" />
+                  <stop offset="75%" stop-color="#E2C98A" />
+                  <stop offset="100%" stop-color="#C5A059" stop-opacity="0.3" />
                 </linearGradient>
                 <linearGradient id="goldHeart" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#F2DD9E"/>
-                  <stop offset="40%" stop-color="#D4AF57"/>
-                  <stop offset="100%" stop-color="#A68032"/>
+                  <stop offset="0%" stop-color="#F2DD9E" />
+                  <stop offset="40%" stop-color="#D4AF57" />
+                  <stop offset="100%" stop-color="#A68032" />
                 </linearGradient>
               </defs>
 
               <!-- Corazón Central Dorado -->
-              <path d="M 90 14.5 C 87.6 12 81.5 7.8 81.5 4 C 81.5 1.6 83.4 0 85.8 0 C 87.5 0 89.1 1 90 2.2 C 90.9 1 92.5 0 94.2 0 C 96.6 0 98.5 1.6 98.5 4 C 98.5 7.8 92.4 12 90 14.5 Z" fill="url(#goldHeart)"/>
+              <path
+                d="M 90 14.5 C 87.6 12 81.5 7.8 81.5 4 C 81.5 1.6 83.4 0 85.8 0 C 87.5 0 89.1 1 90 2.2 C 90.9 1 92.5 0 94.2 0 C 96.6 0 98.5 1.6 98.5 4 C 98.5 7.8 92.4 12 90 14.5 Z"
+                fill="url(#goldHeart)" />
 
               <!-- Tallo Izquierdo -->
-              <line x1="14" y1="7.5" x2="80" y2="7.5" stroke="url(#goldStem)" stroke-width="1.1" stroke-linecap="round"/>
+              <line x1="14" y1="7.5" x2="80" y2="7.5" stroke="url(#goldStem)" stroke-width="1.1"
+                stroke-linecap="round" />
 
               <!-- Espigas Izquierdas -->
-              <path d="M 70 7.5 C 66 5 62 4.5 59 5.5 C 63 6.8 66 7.5 70 7.5 Z" fill="url(#goldHeart)"/>
-              <path d="M 70 7.5 C 66 10 62 10.5 59 9.5 C 63 8.2 66 7.5 70 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 70 7.5 C 66 5 62 4.5 59 5.5 C 63 6.8 66 7.5 70 7.5 Z" fill="url(#goldHeart)" />
+              <path d="M 70 7.5 C 66 10 62 10.5 59 9.5 C 63 8.2 66 7.5 70 7.5 Z" fill="url(#goldHeart)" />
 
-              <path d="M 56 7.5 C 52 5 48 4.5 45 5.5 C 49 6.8 52 7.5 56 7.5 Z" fill="url(#goldHeart)"/>
-              <path d="M 56 7.5 C 52 10 48 10.5 45 9.5 C 49 8.2 52 7.5 56 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 56 7.5 C 52 5 48 4.5 45 5.5 C 49 6.8 52 7.5 56 7.5 Z" fill="url(#goldHeart)" />
+              <path d="M 56 7.5 C 52 10 48 10.5 45 9.5 C 49 8.2 52 7.5 56 7.5 Z" fill="url(#goldHeart)" />
 
-              <path d="M 42 7.5 C 38 5 34 4.5 31 5.5 C 35 6.8 38 7.5 42 7.5 Z" fill="url(#goldHeart)"/>
-              <path d="M 42 7.5 C 38 10 34 10.5 31 9.5 C 35 8.2 38 7.5 42 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 42 7.5 C 38 5 34 4.5 31 5.5 C 35 6.8 38 7.5 42 7.5 Z" fill="url(#goldHeart)" />
+              <path d="M 42 7.5 C 38 10 34 10.5 31 9.5 C 35 8.2 38 7.5 42 7.5 Z" fill="url(#goldHeart)" />
 
-              <path d="M 28 7.5 C 24 5 20 4.5 17 5.5 C 21 6.8 24 7.5 28 7.5 Z" fill="url(#goldHeart)"/>
-              <path d="M 28 7.5 C 24 10 20 10.5 17 9.5 C 21 8.2 24 7.5 28 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 28 7.5 C 24 5 20 4.5 17 5.5 C 21 6.8 24 7.5 28 7.5 Z" fill="url(#goldHeart)" />
+              <path d="M 28 7.5 C 24 10 20 10.5 17 9.5 C 21 8.2 24 7.5 28 7.5 Z" fill="url(#goldHeart)" />
 
               <!-- Hoja terminal izquierda -->
-              <path d="M 14 7.5 C 10 6.5 6 7 2 7.5 C 6 8 10 8.5 14 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 14 7.5 C 10 6.5 6 7 2 7.5 C 6 8 10 8.5 14 7.5 Z" fill="url(#goldHeart)" />
 
               <!-- Tallo Derecho -->
-              <line x1="100" y1="7.5" x2="166" y2="7.5" stroke="url(#goldStem)" stroke-width="1.1" stroke-linecap="round"/>
+              <line x1="100" y1="7.5" x2="166" y2="7.5" stroke="url(#goldStem)" stroke-width="1.1"
+                stroke-linecap="round" />
 
               <!-- Espigas Derechas -->
-              <path d="M 110 7.5 C 114 5 118 4.5 121 5.5 C 117 6.8 114 7.5 110 7.5 Z" fill="url(#goldHeart)"/>
-              <path d="M 110 7.5 C 114 10 118 10.5 121 9.5 C 117 8.2 114 7.5 110 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 110 7.5 C 114 5 118 4.5 121 5.5 C 117 6.8 114 7.5 110 7.5 Z" fill="url(#goldHeart)" />
+              <path d="M 110 7.5 C 114 10 118 10.5 121 9.5 C 117 8.2 114 7.5 110 7.5 Z" fill="url(#goldHeart)" />
 
-              <path d="M 124 7.5 C 128 5 132 4.5 135 5.5 C 131 6.8 128 7.5 124 7.5 Z" fill="url(#goldHeart)"/>
-              <path d="M 124 7.5 C 128 10 132 10.5 135 9.5 C 131 8.2 128 7.5 124 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 124 7.5 C 128 5 132 4.5 135 5.5 C 131 6.8 128 7.5 124 7.5 Z" fill="url(#goldHeart)" />
+              <path d="M 124 7.5 C 128 10 132 10.5 135 9.5 C 131 8.2 128 7.5 124 7.5 Z" fill="url(#goldHeart)" />
 
-              <path d="M 138 7.5 C 142 5 146 4.5 149 5.5 C 145 6.8 142 7.5 138 7.5 Z" fill="url(#goldHeart)"/>
-              <path d="M 138 7.5 C 142 10 146 10.5 149 9.5 C 145 8.2 142 7.5 138 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 138 7.5 C 142 5 146 4.5 149 5.5 C 145 6.8 142 7.5 138 7.5 Z" fill="url(#goldHeart)" />
+              <path d="M 138 7.5 C 142 10 146 10.5 149 9.5 C 145 8.2 142 7.5 138 7.5 Z" fill="url(#goldHeart)" />
 
-              <path d="M 152 7.5 C 156 5 160 4.5 163 5.5 C 159 6.8 156 7.5 152 7.5 Z" fill="url(#goldHeart)"/>
-              <path d="M 152 7.5 C 156 10 160 10.5 163 9.5 C 159 8.2 156 7.5 152 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 152 7.5 C 156 5 160 4.5 163 5.5 C 159 6.8 156 7.5 152 7.5 Z" fill="url(#goldHeart)" />
+              <path d="M 152 7.5 C 156 10 160 10.5 163 9.5 C 159 8.2 156 7.5 152 7.5 Z" fill="url(#goldHeart)" />
 
               <!-- Hoja terminal derecha -->
-              <path d="M 166 7.5 C 170 6.5 174 7 178 7.5 C 174 8 170 8.5 166 7.5 Z" fill="url(#goldHeart)"/>
+              <path d="M 166 7.5 C 170 6.5 174 7 178 7.5 C 174 8 170 8.5 166 7.5 Z" fill="url(#goldHeart)" />
             </svg>
           </div>
         </footer>
@@ -273,4 +289,5 @@
   <script src="js/config.js?v=18"></script>
   <script src="js/main.js?v=22"></script>
 </body>
+
 </html>
