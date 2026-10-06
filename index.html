@@ -14,8 +14,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Preload de recursos críticos para apertura instantánea y máxima fluidez -->
+  <link rel="preload" as="image" href="assets/capa_1.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/capa_2.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/capa_3.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/sello.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/tigres_bebes.webp" type="image/webp">
+
   <!-- Estilos -->
-  <link rel="stylesheet" href="css/styles.css?v=79">
+  <link rel="stylesheet" href="css/styles.css?v=80">
 </head>
 <body>
   <!-- Contenedor exterior (Fondo ambiental para escritorio) -->
@@ -30,16 +37,23 @@
         <div class="decor-layer">
           <!-- Globos decorativos (Superior Izquierda) -->
           <div class="decor-balloons" id="decorBalloons">
-            <img src="assets/globos.png?v=59" alt="Globos decorativos rosados y dorados" class="floating-balloons" />
+            <picture>
+              <source srcset="assets/globos.webp" type="image/webp">
+              <img src="assets/globos.png" alt="Globos decorativos rosados y dorados" class="floating-balloons" decoding="async" />
+            </picture>
           </div>
 
           <!-- Palmeras estilo acuarela Toile de Jouy animadas (Superior Derecha) -->
           <div class="decor-palms" id="decorPalms">
-            <img 
-              src="assets/palmas_bintage.gif" 
-              alt="Palmeras animadas estilo vintage" 
-              class="palm-trees-img" 
-              id="palmasImg" />
+            <picture>
+              <source srcset="assets/palmas_bintage.webp" type="image/webp">
+              <img 
+                src="assets/palmas_bintage.gif" 
+                alt="Palmeras animadas estilo vintage" 
+                class="palm-trees-img" 
+                id="palmasImg" 
+                decoding="async" />
+            </picture>
           </div>
         </div>
 
@@ -71,10 +85,16 @@
           <div class="envelope-container" id="envelopeContainer" role="button" tabindex="0" aria-label="Abrir sobre de invitación">
             
             <!-- Capa 1 (Fondo trasero): z-index: 1 -->
-            <img src="assets/capa_1.png?v=60" class="envelope-layer envelope-back" alt="Fondo trasero del sobre" />
+            <picture>
+              <source srcset="assets/capa_1.webp" type="image/webp">
+              <img src="assets/capa_1.png" class="envelope-layer envelope-back" alt="Fondo trasero del sobre" decoding="async" />
+            </picture>
 
             <!-- Capa Solapa Superior Abierta: z-index: 2 -->
-            <img src="assets/capa_3.png?v=58" class="envelope-layer envelope-flap-open" id="flapOpen" alt="Solapa abierta del sobre" />
+            <picture>
+              <source srcset="assets/capa_3.webp" type="image/webp">
+              <img src="assets/capa_3.png" class="envelope-layer envelope-flap-open" id="flapOpen" alt="Solapa abierta del sobre" decoding="async" />
+            </picture>
 
             <!-- Ranura intermedia con Tarjeta / Carta (Renderizado Dinámico en Vivo): z-index: 3 -->
             <div class="envelope-card-slot" id="cardSlot">
@@ -83,10 +103,16 @@
                 <div class="card-live-preview">
                   <!-- Arreglos Florales Superiores -->
                   <div class="card-live-floral card-live-floral-left" aria-hidden="true">
-                    <img src="assets/diseno_floral_grande_izquierdo.png" alt="" class="card-live-floral-img" />
+                    <picture>
+                      <source srcset="assets/diseno_floral_grande_izquierdo.webp" type="image/webp">
+                      <img src="assets/diseno_floral_grande_izquierdo.png" alt="" class="card-live-floral-img" decoding="async" />
+                    </picture>
                   </div>
                   <div class="card-live-floral card-live-floral-right" aria-hidden="true">
-                    <img src="assets/diseno_floral_grande_derecho.png" alt="" class="card-live-floral-img" />
+                    <picture>
+                      <source srcset="assets/diseno_floral_grande_derecho.webp" type="image/webp">
+                      <img src="assets/diseno_floral_grande_derecho.png" alt="" class="card-live-floral-img" decoding="async" />
+                    </picture>
                   </div>
 
                   <!-- Contenido de la carta -->
@@ -131,28 +157,41 @@
             </div>
 
             <!-- Capa 2 (Bolsillo Frontal): z-index: 4 -->
-            <img src="assets/capa_2.png?v=58" class="envelope-layer envelope-front" alt="Bolsillo frontal del sobre" />
+            <picture>
+              <source srcset="assets/capa_2.webp" type="image/webp">
+              <img src="assets/capa_2.png" class="envelope-layer envelope-front" alt="Bolsillo frontal del sobre" decoding="async" />
+            </picture>
 
             <!-- Capa Solapa Cerrada: z-index: 6 -->
-            <img src="assets/capa_3.png?v=58" class="envelope-layer envelope-flap-closed" id="flapClosed" alt="Solapa cerrada del sobre" />
+            <picture>
+              <source srcset="assets/capa_3.webp" type="image/webp">
+              <img src="assets/capa_3.png" class="envelope-layer envelope-flap-closed" id="flapClosed" alt="Solapa cerrada del sobre" decoding="async" />
+            </picture>
 
             <!-- Lazo dorado bajo el sello de cera: z-index: 10 -->
             <div class="seal-ribbon" id="sealRibbon" aria-hidden="true"></div>
 
             <!-- Sello de cera dorado central interactivo: z-index: 11 -->
             <div class="wax-seal" id="waxSeal" title="Toca para abrir">
-              <img src="assets/sello.png" alt="Sello de cera dorado con motivo de pajarito" class="seal-img" />
+              <picture>
+                <source srcset="assets/sello.webp" type="image/webp">
+                <img src="assets/sello.png" alt="Sello de cera dorado con motivo de pajarito" class="seal-img" decoding="async" />
+              </picture>
               <div class="seal-shine" aria-hidden="true"></div>
               <div class="seal-pulse-ring" aria-hidden="true"></div>
             </div>
 
-            <!-- Cachorros de tigres bebés juntos animados en GIF nativo: z-index: 30 -->
+            <!-- Cachorros de tigres bebés juntos animados en WebP ultra liviano (2.8MB vs 61.7MB): z-index: 30 -->
             <div class="tiger-cubs-container" id="tigerCubsContainer">
-              <img 
-                src="assets/tigres_bebes.gif" 
-                alt="Cachorros de tigres bebés jugando juntos" 
-                class="tiger-cubs-img" 
-                id="tigerCubsImg" />
+              <picture>
+                <source srcset="assets/tigres_bebes.webp" type="image/webp">
+                <img 
+                  src="assets/tigres_bebes_fallback.gif" 
+                  alt="Cachorros de tigres bebés jugando juntos" 
+                  class="tiger-cubs-img" 
+                  id="tigerCubsImg"
+                  decoding="async" />
+              </picture>
             </div>
 
           </div>
@@ -231,7 +270,7 @@
   <div class="card-takeover" id="cardTakeover" aria-hidden="true"></div>
 
   <!-- Configuración Centralizada y Script Principal -->
-  <script src="js/config.js?v=17"></script>
-  <script src="js/main.js?v=21"></script>
+  <script src="js/config.js?v=18"></script>
+  <script src="js/main.js?v=22"></script>
 </body>
 </html>

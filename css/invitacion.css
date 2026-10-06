@@ -48,6 +48,10 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+picture {
+  display: contents;
+}
+
 html,
 body {
   width: 100%;

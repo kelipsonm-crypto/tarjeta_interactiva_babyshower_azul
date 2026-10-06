@@ -20,39 +20,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!ctx) return;
 
     let isProcessing = false;
+    let isVisible = true;
+    let lastTime = -1;
 
-    const render = () => {
-      if (videoEl.readyState >= 2 && !videoEl.paused) {
-        const w = canvasEl.width;
-        const h = canvasEl.height;
-        ctx.drawImage(videoEl, 0, 0, w, h);
-
-        const imgData = ctx.getImageData(0, 0, w, h);
-        const buf32 = new Uint32Array(imgData.data.buffer);
-        const len = buf32.length;
-
-        for (let i = 0; i < len; i++) {
-          const pixel = buf32[i];
-          const r = pixel & 0xFF;
-          const g = (pixel >> 8) & 0xFF;
-          const b = (pixel >> 16) & 0xFF;
-
-          // Fondo blanco / off-white del video (> thresholdWhite)
-          if (r > thresholdWhite && g > thresholdWhite && b > thresholdWhite) {
-            buf32[i] = 0; // Transparente 100%
-          } else if (r > thresholdFeather && g > thresholdFeather && b > thresholdFeather) {
-            // Suavizado anti-aliasing en bordes finos
-            const avg = (r + g + b) / 3;
-            const a = Math.min(255, Math.max(0, Math.round((255 - avg) * 12.5)));
-            buf32[i] = (pixel & 0x00FFFFFF) | (a << 24);
-          }
+    // Pausar procesamiento si el elemento no está visible en pantalla (ahorro masivo de CPU en scroll)
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        isVisible = entry ? entry.isIntersecting : true;
+        if (isVisible && !isProcessing && !videoEl.paused) {
+          isProcessing = true;
+          scheduleNext();
         }
-        ctx.putImageData(imgData, 0, 0);
-        if (canvasEl.parentElement) {
-          canvasEl.parentElement.classList.add('is-ready');
-        }
+      }, { threshold: 0.05 });
+      observer.observe(canvasEl);
+    }
+
+    const scheduleNext = () => {
+      if (!isVisible || videoEl.paused) {
+        isProcessing = false;
+        return;
       }
-
       if ('requestVideoFrameCallback' in videoEl) {
         videoEl.requestVideoFrameCallback(render);
       } else {
@@ -60,21 +48,63 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    videoEl.addEventListener('play', () => {
-      if (!isProcessing) {
-        isProcessing = true;
-        if ('requestVideoFrameCallback' in videoEl) {
-          videoEl.requestVideoFrameCallback(render);
-        } else {
-          requestAnimationFrame(render);
+    const render = () => {
+      if (!isVisible || videoEl.paused) {
+        isProcessing = false;
+        return;
+      }
+
+      if (videoEl.readyState >= 2) {
+        // Saltar procesamiento si el fotograma no ha avanzado (evita trabajo redundante a 60/120Hz)
+        if (videoEl.currentTime !== lastTime) {
+          lastTime = videoEl.currentTime;
+
+          const w = canvasEl.width;
+          const h = canvasEl.height;
+          ctx.drawImage(videoEl, 0, 0, w, h);
+
+          const imgData = ctx.getImageData(0, 0, w, h);
+          const buf32 = new Uint32Array(imgData.data.buffer);
+          const len = buf32.length;
+
+          for (let i = 0; i < len; i++) {
+            const pixel = buf32[i];
+            const r = pixel & 0xFF;
+            const g = (pixel >> 8) & 0xFF;
+            const b = (pixel >> 16) & 0xFF;
+
+            // Fondo blanco / off-white del video (> thresholdWhite)
+            if (r > thresholdWhite && g > thresholdWhite && b > thresholdWhite) {
+              buf32[i] = 0; // Transparente 100%
+            } else if (r > thresholdFeather && g > thresholdFeather && b > thresholdFeather) {
+              // Suavizado anti-aliasing en bordes finos
+              const avg = (r + g + b) / 3;
+              const a = Math.min(255, Math.max(0, Math.round((255 - avg) * 12.5)));
+              buf32[i] = (pixel & 0x00FFFFFF) | (a << 24);
+            }
+          }
+          ctx.putImageData(imgData, 0, 0);
+
+          if (canvasEl.parentElement && !canvasEl.parentElement.classList.contains('is-ready')) {
+            canvasEl.parentElement.classList.add('is-ready');
+          }
         }
+      }
+
+      scheduleNext();
+    };
+
+    videoEl.addEventListener('play', () => {
+      if (!isProcessing && isVisible) {
+        isProcessing = true;
+        scheduleNext();
       }
     });
 
     // Iniciar render inicial si ya está reproduciendo
-    if (!videoEl.paused && videoEl.readyState >= 2) {
+    if (!videoEl.paused && videoEl.readyState >= 2 && isVisible) {
       isProcessing = true;
-      render();
+      scheduleNext();
     }
   };
 

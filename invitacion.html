@@ -13,8 +13,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Preload de recursos críticos para carga fluida -->
+  <link rel="preload" as="image" href="assets/elefante_bebe.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/diseno_floral_grande_izquierdo.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/diseno_floral_grande_derecho.webp" type="image/webp">
+
   <!-- Estilos de la Invitación -->
-  <link rel="stylesheet" href="css/invitacion.css?v=84">
+  <link rel="stylesheet" href="css/invitacion.css?v=85">
 </head>
 <body>
   <!-- Contenedor exterior para escritorio -->
@@ -24,29 +29,50 @@
 
       <!-- Arreglos Florales Superiores (Marco Toile de Jouy en las Esquinas) -->
       <div class="floral-frame floral-top-left" aria-hidden="true">
-        <img src="assets/diseno_floral_grande_izquierdo.png" alt="" class="floral-img" />
+        <picture>
+          <source srcset="assets/diseno_floral_grande_izquierdo.webp" type="image/webp">
+          <img src="assets/diseno_floral_grande_izquierdo.png" alt="" class="floral-img" decoding="async" />
+        </picture>
       </div>
       <div class="floral-frame floral-top-right" aria-hidden="true">
-        <img src="assets/diseno_floral_grande_derecho.png" alt="" class="floral-img" />
+        <picture>
+          <source srcset="assets/diseno_floral_grande_derecho.webp" type="image/webp">
+          <img src="assets/diseno_floral_grande_derecho.png" alt="" class="floral-img" decoding="async" />
+        </picture>
       </div>
 
       <!-- Arreglo Floral Continuo Lateral Izquierdo (Elefante, Detalles y Cronómetro) -->
       <div class="floral-frame floral-elephant-left" aria-hidden="true">
-        <img src="assets/diseno_floral_izquierdo.png" alt="" class="floral-img" />
+        <picture>
+          <source srcset="assets/diseno_floral_izquierdo.webp" type="image/webp">
+          <img src="assets/diseno_floral_izquierdo.png" alt="" class="floral-img" loading="lazy" decoding="async" />
+        </picture>
       </div>
       <div class="floral-frame floral-details-left" aria-hidden="true">
-        <img src="assets/diseno_floral_izquierdo.png" alt="" class="floral-img" />
+        <picture>
+          <source srcset="assets/diseno_floral_izquierdo.webp" type="image/webp">
+          <img src="assets/diseno_floral_izquierdo.png" alt="" class="floral-img" loading="lazy" decoding="async" />
+        </picture>
       </div>
       <div class="floral-frame floral-countdown-left" aria-hidden="true">
-        <img src="assets/diseno_floral_izquierdo.png" alt="" class="floral-img" />
+        <picture>
+          <source srcset="assets/diseno_floral_izquierdo.webp" type="image/webp">
+          <img src="assets/diseno_floral_izquierdo.png" alt="" class="floral-img" loading="lazy" decoding="async" />
+        </picture>
       </div>
 
       <!-- Globos Decorativos Laterales con Flotación Suave -->
       <aside class="lateral-balloons balloon-left" aria-hidden="true">
-        <img src="assets/globos.png?v=59" alt="" class="balloon-img" />
+        <picture>
+          <source srcset="assets/globos.webp" type="image/webp">
+          <img src="assets/globos.png" alt="" class="balloon-img" decoding="async" />
+        </picture>
       </aside>
       <aside class="lateral-balloons balloon-right" aria-hidden="true">
-        <img src="assets/globos.png?v=59" alt="" class="balloon-img" />
+        <picture>
+          <source srcset="assets/globos.webp" type="image/webp">
+          <img src="assets/globos.png" alt="" class="balloon-img" decoding="async" />
+        </picture>
       </aside>
 
       <!-- Contenido Principal de la Invitación -->
@@ -114,22 +140,26 @@
           <!-- Mariposa Izquierda (Video source oculto + Canvas transparente) -->
           <div class="butterfly-container butterfly-left" aria-hidden="true">
             <video class="hidden-source-video" id="butterflyLeftVideo" src="assets/maripoza_izquierda.mp4" autoplay loop muted playsinline></video>
-            <canvas class="butterfly-canvas" id="butterflyLeftCanvas" width="160" height="160"></canvas>
+            <canvas class="butterfly-canvas" id="butterflyLeftCanvas" width="100" height="100"></canvas>
           </div>
 
-          <!-- Elefantito Centrado (GIF animado transparente) -->
+          <!-- Elefantito Centrado (WebP animado optimizado 1.5MB vs 5.7MB) -->
           <div class="elephant-container">
-            <img 
-              src="assets/elefante_bebe.gif" 
-              alt="Elefantito bebé animado" 
-              class="elephant-img" 
-              id="elephantImg" />
+            <picture>
+              <source srcset="assets/elefante_bebe.webp" type="image/webp">
+              <img 
+                src="assets/elefante_bebe.gif" 
+                alt="Elefantito bebé animado" 
+                class="elephant-img" 
+                id="elephantImg"
+                decoding="async" />
+            </picture>
           </div>
 
           <!-- Mariposa Derecha (Video source oculto + Canvas transparente) -->
           <div class="butterfly-container butterfly-right" aria-hidden="true">
             <video class="hidden-source-video" id="butterflyRightVideo" src="assets/maripoza_derecha.mp4" autoplay loop muted playsinline></video>
-            <canvas class="butterfly-canvas" id="butterflyRightCanvas" width="160" height="160"></canvas>
+            <canvas class="butterfly-canvas" id="butterflyRightCanvas" width="100" height="100"></canvas>
           </div>
         </section>
 
@@ -138,14 +168,18 @@
              ========================================================================== -->
         <section class="event-details-section" aria-label="Detalles del Evento y Cuenta Regresiva">
 
-          <!-- Jirafita Animada Lateral Derecha (GIF animado transparente) -->
+          <!-- Jirafita Animada Lateral Derecha (WebP animado optimizado 1.1MB vs 3.6MB) -->
           <div class="side-giraffe-container" aria-hidden="true">
-            <img 
-              src="assets/jirafa_bebe.gif" 
-              alt="Jirafita bebé animada" 
-              class="giraffe-img" 
-              id="giraffeImg" 
-              loading="lazy" />
+            <picture>
+              <source srcset="assets/jirafa_bebe.webp" type="image/webp">
+              <img 
+                src="assets/jirafa_bebe.gif" 
+                alt="Jirafita bebé animada" 
+                class="giraffe-img" 
+                id="giraffeImg" 
+                loading="lazy"
+                decoding="async" />
+            </picture>
           </div>
 
           <!-- Contenedor Central de Filas de Información -->
@@ -281,21 +315,31 @@
 
           <!-- Árboles Safari: Fuera de la caja de la cebra y AL FONDO DE TODO (z-index: 1) -->
           <div class="safari-tree safari-tree-left zebra-tree zebra-tree-left" id="safariTreeLeft" aria-hidden="true">
-            <img src="assets/diseno_arboles_izquierdo.png?v=3" alt="" class="safari-tree-img zebra-tree-img" loading="lazy" />
+            <picture>
+              <source srcset="assets/diseno_arboles_izquierdo.webp" type="image/webp">
+              <img src="assets/diseno_arboles_izquierdo.png" alt="" class="safari-tree-img zebra-tree-img" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="safari-tree safari-tree-right zebra-tree zebra-tree-right" id="safariTreeRight" aria-hidden="true">
-            <img src="assets/diseno_arboles_derecho.png?v=3" alt="" class="safari-tree-img zebra-tree-img" loading="lazy" />
+            <picture>
+              <source srcset="assets/diseno_arboles_derecho.webp" type="image/webp">
+              <img src="assets/diseno_arboles_derecho.png" alt="" class="safari-tree-img zebra-tree-img" loading="lazy" decoding="async" />
+            </picture>
           </div>
 
-          <!-- Caja de la Cebra Bebé (GIF animado, Capa z-index: 2) -->
+          <!-- Caja de la Cebra Bebé (WebP animado optimizado 2.7MB vs 52.4MB) -->
           <div class="zebra-box" id="zebraBox">
             <div class="zebra-video-wrap">
-              <img 
-                src="assets/diseno_cebra_bebe.gif" 
-                alt="Cebra bebé animada" 
-                class="zebra-img" 
-                id="zebraImg" 
-                loading="lazy" />
+              <picture>
+                <source srcset="assets/diseno_cebra_bebe.webp" type="image/webp">
+                <img 
+                  src="assets/diseno_cebra_bebe_fallback.gif" 
+                  alt="Cebra bebé animada" 
+                  class="zebra-img" 
+                  id="zebraImg" 
+                  loading="lazy"
+                  decoding="async" />
+              </picture>
             </div>
           </div>
 
@@ -386,8 +430,8 @@
   </main>
 
   <!-- Script de Configuración Centralizada -->
-  <script src="js/config.js?v=17"></script>
+  <script src="js/config.js?v=18"></script>
   <!-- Script de Interacción, Keying de Canvas y Audio -->
-  <script src="js/invitacion.js?v=24"></script>
+  <script src="js/invitacion.js?v=25"></script>
 </body>
 </html>
